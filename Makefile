@@ -5,39 +5,34 @@
 #                                                     +:+ +:+         +:+      #
 #    By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/04/25 16:13:14 by momayaz           #+#    #+#              #
-#    Updated: 2022/04/25 22:16:43 by msaouab          ###   ########.fr        #
+#    Created: 2022/01/18 09:45:39 by msaouab           #+#    #+#              #
+#    Updated: 2022/04/25 23:15:03 by msaouab          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC =	parsing/mini_utils.c \
-		parsing/mini_utils2.c \
-		parsing/utils.c \
-		parsing/utils2.c \
-		parsing/utils3.c \
-		parsing/parse_map.c \
-		utils/utils.c \
-		utils/utils2.c
+NAME = so_long
 
-SRCM = mandatory.c
+NAME_BONUS = so_long_bonus
 
-NAME = cub3D
+SRC = parser/parser.c\
 
-CFLAGS = -Wall -Wextra -Werror -lmlx -framework OpenGL -framework AppKit
+OBJ = ${SRC:.c=.o}
 
-all: $(NAME)
+CC = gcc
 
-$(NAME): $(SRC) cub3d.h
-	$(CC) $(CFLAGS) $(SRC) -o $(NAME)
+CFLAGS = -Wall -Wextra -Werror
 
-clean:
-	rm -rf $(NAME)
+MLX = -lmlx -framework OpenGL -framework AppKit
 
-fclean: clean
+all : $(NAME) clean
 
-re: fclean all
+$(NAME): $(OBJ)
+	@$(CC) $(CFLAGS) $(OBJ) $(MLX) -o $(NAME)
 
-run: all
-	./cub3D maps/man.cub
+clean :
+		@rm -rf $(OBJ)
 
-.PHONY: bonus all re clean fclean
+fclean : clean
+		rm -rf $(NAME)
+
+re : fclean all
