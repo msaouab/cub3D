@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 16:06:44 by momayaz           #+#    #+#             */
-/*   Updated: 2022/04/25 16:14:58 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/04/25 22:18:44 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <mlx.h>
 # include <stdio.h>
 # include <stdlib.h>
+#include "../ft_printf/ft_printf.h"
 
 typedef struct s_data
 {

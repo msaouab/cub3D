@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   mini_utils2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 14:37:44 by momayaz           #+#    #+#             */
-/*   Updated: 2022/04/25 14:37:46 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/04/25 17:47:37 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../include/cub3d.h"
 
 int	ft_isspace(char c)
 {

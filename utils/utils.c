@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 16:14:25 by momayaz           #+#    #+#             */
-/*   Updated: 2022/04/25 16:14:42 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/04/25 17:48:29 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include ../include/cub3d.h"
 
 int	ft_error(char *str, int exit_status)
 {

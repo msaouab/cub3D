@@ -1,19 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils2.c                                           :+:      :+:    :+:   */
+/*   ft_char.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: msaouab <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/25 16:15:40 by momayaz           #+#    #+#             */
-/*   Updated: 2022/04/25 17:48:40 by msaouab          ###   ########.fr       */
+/*   Created: 2021/11/27 20:44:19 by msaouab           #+#    #+#             */
+/*   Updated: 2021/11/27 21:33:06 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h`"
+#include "ft_printf.h"
 
-int	ft_close(void)
+void	ft_putchar(char c, int *len)
 {
-	exit(1);
-	return (0);
+	write(1, &c, 1);
+	(*len)++;
+}
+
+void	ft_putstr(char *str, int *len)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		ft_putstr("(null)", len);
+	else
+		while (str[i])
+			ft_putchar(str[i++], len);
 }

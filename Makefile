@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+         #
+#    By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/25 16:13:14 by momayaz           #+#    #+#              #
-#    Updated: 2022/04/25 16:13:16 by momayaz          ###   ########.fr        #
+#    Updated: 2022/04/25 22:16:43 by msaouab          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC = parsing/mini_utils.c \
+SRC =	parsing/mini_utils.c \
 		parsing/mini_utils2.c \
 		parsing/utils.c \
 		parsing/utils2.c \
@@ -27,8 +27,8 @@ CFLAGS = -Wall -Wextra -Werror -lmlx -framework OpenGL -framework AppKit
 
 all: $(NAME)
 
-$(NAME): $(SRCM) $(SRC) cub3d.h
-	$(CC) $(CFLAGS) $(SRCM) $(SRC) -o $(NAME)
+$(NAME): $(SRC) cub3d.h
+	$(CC) $(CFLAGS) $(SRC) -o $(NAME)
 
 clean:
 	rm -rf $(NAME)
