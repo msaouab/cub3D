@@ -3,106 +3,92 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/25 14:38:02 by momayaz           #+#    #+#             */
-/*   Updated: 2022/04/25 17:47:52 by msaouab          ###   ########.fr       */
+/*   Created: 2022/04/14 16:11:17 by momayaz           #+#    #+#             */
+/*   Updated: 2022/04/20 22:20:36 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "parsing.h"
 
-static char	*get_texture_name(char *line)
+int	cont_line(char *t)
 {
-	int		i;
 	int		fd;
-	char	*trim;
+	int		i;
+	char	c;
 
 	i = 0;
-	trim = ft_strtrim(line, " \t\f\v\r\n");
-	fd = open(trim, O_RDONLY, 0644);
-	if (fd == -1)
-		ft_error("Error: non-existent texture\n", 1);
-	close (fd);
-	return (trim);
+	fd = open(t, O_RDONLY);
+	while (read(fd, &c, 1))
+	{
+		if (c == '\n')
+			i++;
+	}
+	close(fd);
+	return (++i);
 }
 
-void	ft_check_texture(t_data *data, char c, char *line, int *cp)
+void	ft_ifspace(char *line, int *i)
 {
-	if (data->bola[(int) c] == 1)
-		ft_error("Error: duplicate texture value\n", 1);
-	data->bola[(int) c] = 1;
-	(*cp)++;
-	if (c == 'N')
-		data->no = get_texture_name(line + 3);
-	if (c == 'S')
-		data->so = get_texture_name(line + 3);
-	if (c == 'E')
-		data->ea = get_texture_name(line + 3);
-	if (c == 'W')
-		data->we = get_texture_name(line + 3);
+	while ((line[*i] == ' ' || line[*i] == '\t' || line[*i] == '\n')
+		|| (line[*i] == '\r' || line[*i] == '\v' || line[*i] == '\f'))
+		(*i)++;
 }
 
-void	stupid_copy(t_data *data)
+void	ft_printf(char *op)
 {
-	int		i;
+	printf("%s texture not found\n", op);
+	exit(1);
+}
+
+char	*check_texr(t_cub  *all, char *line, char *op)
+{
 	int		j;
-	char	*copy;
-
-	copy = malloc ((data->width + 1) * sizeof(char));
-	(!copy && ft_error("Error: allocation failed\n", 1));
-	i = -1;
-	while (data->map[++i])
-	{
-		j = -1;
-		while (data->map[i][++j])
-			copy[j] = data->map[i][j];
-		while (j < data->width)
-			copy[j++] = ' ';
-		copy[j] = 0;
-		free(data->map[i]);
-		data->map[i] = ft_strdup(copy);
-	}
-	free (copy);
-}
-
-static void	mini_loop(int fd, t_data *data)
-{
-	char	*trim;
-
-	while (1)
-	{
-		data->map[0] = get_next_line(fd);
-		trim = ft_strtrim(data->map[0], " \t\n\r\v\f");
-		if (trim && trim[0] == '1')
-		{
-			free (trim);
-			return ;
-		}
-		free(data->map[0]);
-		free(trim);
-	}
-}
-
-void	fill_map(t_data *data, char *filename)
-{
+	char	**s;
+	char	*text;
 	int		fd;
-	int		i;
 
-	fd = open(filename, O_RDONLY, 0644);
+	s = ft_split(line, ' ');
+	if (!s)
+		ft_printf(op);
+	text = ft_strtrim(s[1], " \n");
+	fd = open(text, O_RDONLY);
 	if (fd == -1)
-		ft_error("Error: file doesn't exist o r permission denied\n", 1);
-	data->map = malloc((data->height + 1) * sizeof(char *));
-	(!data->map && ft_error("Error: allocation failed\n", 1));
-	mini_loop(fd, data);
-	data->width = 0;
-	i = 0;
-	while (data->map[i])
+		ft_printf(op);
+	close(fd);
+	if (s[2] && s[2][0] != '\n')
+		ft_printf(op);
+	j = 0;
+	while (s[j])
+		free(s[j++]);
+	free(s);
+	return (text);
+}
+
+void	ft_firstcheck(t_cub  *all, char c, char d)
+{
+	if (all->info.test[(int)c] == 0)
+		all->info.test[(int)c] += 1;
+	else if (c && c != '1')
 	{
-		if (ft_strlen(data->map[i]) > (size_t) data->width)
-			data->width = (int) ft_strlen(data->map[i]);
-		data->map[++i] = get_next_line(fd);
+		printf("dubel symbol %c ", c);
+		exit(1);
 	}
-	(i != data->height && ft_error("Error: newline in map\n", 1));
-	stupid_copy(data);
+	if (c == '1')
+	{
+		if (!(all->info.test[(int) 'N'] == 1 && all->info.test[(int) 'W'] == 1
+				&& all->info.test[(int) 'E'] == 1 && all->info.test[(int) 'S']
+				== 1 && all->info.test[(int) 'F'] == 1
+				&& all->info.test[(int) 'C'] == 1))
+		{
+			printf("map error1");
+			exit(1);
+		}
+	}
+	if (c != '1' && c != '0' && (all->info.test[(int) '1'] == 1))
+	{
+		printf("map error");
+		exit(1);
+	}
 }

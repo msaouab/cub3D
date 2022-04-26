@@ -3,101 +3,106 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/25 14:37:56 by momayaz           #+#    #+#             */
-/*   Updated: 2022/04/25 17:47:48 by msaouab          ###   ########.fr       */
+/*   Created: 2022/04/14 16:08:59 by momayaz           #+#    #+#             */
+/*   Updated: 2022/04/15 21:48:24 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "parsing.h"
 
-static void	is_valid(char *line)
+size_t	ft_strlen(char *s)
 {
-	int	i;
-	int	cp;
+	size_t	i;
 
 	i = 0;
-	cp = 0;
-	while (line[i] && ft_isspace(line[i]))
+	while (s[i])
 		i++;
-	while (line[i])
-	{
-		if ((line[i] >= '0' && line[i] <= '9') || line[i] == ',')
-		{
-			if (line[i] == ',')
-				cp++;
-		}
-		else
-			ft_error("Error: invalid RGB format\n", 1);
-		i++;
-	}
-	if (cp != 2)
-		ft_error("Error: invalid RGB format\n", 1);
+	return (i);
 }
 
-static int	rgb_to_int(char *line)
+void	ft_concta(char *dest, char *src)
 {
 	int	i;
-	int	j;
+	int	dest_size;
 
-	is_valid(line);
 	i = 0;
-	while (line[i] != ',')
-		i++;
-	if (line[++i] == ',')
-		ft_error("Error: duplicate color value\n", 1);
-	j = i;
-	while (line[j] != ',')
-		j++;
-	if (j == i || line[++j] == ',')
-		ft_error("Error: invalid RGB format\n", 1);
-	if (!line[0] || !line[i] || !line[j])
-		ft_error("Error: invalid RGB format\n", 1);
-	return (ft_atoi(line) * 65536 + ft_atoi(line + i) * 256 \
-	+ ft_atoi(line + j));
-}
-
-void	ft_check_color(t_data *data, char c, char *line, int *cp)
-{
-	if (data->bola[(int) c] == 1)
-		ft_error("Error: duplicate color value\n", 1);
-	data->bola[(int) c] = 1;
-	(*cp)++;
-	if (c == 'C')
-		data->ceiling = rgb_to_int(line + 2);
-	if (c == 'F')
-		data->floor = rgb_to_int(line + 2);
-}
-
-void	count_height(int fd, t_data *data)
-{
-	int		cp;
-	char	c;
-
-	cp = 1;
-	while (read(fd, &c, 1))
+	dest_size = 0;
+	while (dest[dest_size])
+		dest_size++;
+	while (src[i])
 	{
-		if (c == '\n')
-			cp++;
+		dest[dest_size + i] = src[i];
+		i++;
 	}
-	data->height = ++cp;
+	dest[dest_size + i] = '\0';
 }
 
-void	free_all(t_data *data, t_all *all)
+char	*ft_strjoin(int size, char **strs, char *sep)
 {
-	int	i;
+	int		lenght;
+	int		i;
+	char	*concat;
 
-	free(data->no);
-	free(data->so);
-	free(data->ea);
-	free(data->we);
-	i = -1;
-	while (data->map[++i])
-		free(data->map[i]);
-	free(data->map);
-	i = -1;
-	while (++i < SCREEN_H)
-		free(all->ray->buffer[i]);
-	free(all->ray->buffer);
+	if (size > 0)
+		lenght = ft_strlen(sep) * (size - 1);
+	i = 0;
+	while (i < size)
+	{
+		lenght += ft_strlen(strs[i]);
+		i++;
+	}
+	concat = malloc(sizeof(char) * (lenght + 1));
+	if (!concat)
+		return (NULL);
+	i = 0;
+	*concat = 0;
+	while (i < size)
+	{
+		ft_concta(concat, strs[i]);
+		if (i < size - 1)
+			ft_concta(concat, sep);
+		i++;
+	}
+	return (concat);
+}
+
+static int	is_trim(char const a, char const *b)
+{
+	while (*b)
+	{
+		if (a == *b)
+			return (1);
+		b++;
+	}
+	return (0);
+}
+
+char	*ft_strtrim(char const *s1, char const *set)
+{
+	char	*pt;
+	int		i;
+
+	i = 0;
+	if (!s1)
+		return (NULL);
+	while (*s1 && is_trim(*s1, set))
+		s1++;
+	if (!*s1)
+	{
+		pt = malloc(1 * sizeof(char));
+		return (pt[0] = 0, pt);
+	}
+	while (s1[i])
+		i++;
+	while (is_trim(s1[i - 1], set))
+		i--;
+	pt = malloc(i + 1 * sizeof (char));
+	if (!pt)
+		return (NULL);
+	pt[i] = 0;
+	while (--i >= 0)
+		pt[i] = s1[i];
+	return (pt);
 }
