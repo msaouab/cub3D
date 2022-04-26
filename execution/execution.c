@@ -6,13 +6,13 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 23:46:25 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/25 23:46:50 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/04/26 01:09:04 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int	main(int ac, char **av)
+void	ft_execution(t_cub *all)
 {
 	
 }

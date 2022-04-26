@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 16:08:59 by momayaz           #+#    #+#             */
-/*   Updated: 2022/04/15 21:48:24 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/04/26 00:52:42 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "../include/cub3d.h"
 
 size_t	ft_strlen(char *s)
 {

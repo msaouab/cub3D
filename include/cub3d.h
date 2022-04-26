@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.h                                          :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 16:38:44 by momayaz           #+#    #+#             */
-/*   Updated: 2022/04/21 22:07:25 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/04/26 01:06:22 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSING_H
-# define PARSING_H
+#ifndef CUB3d_H
+# define CUB3d_H
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -76,5 +76,9 @@ void			check_charb(t_cub  *a, char c);
 void			check_m(t_cub  *a, char c);
 void			check_charm(t_cub  *a, char c);
 void			ft_free(t_cub  *all);
+
+/* ************************************************************************** */
+
+void	ft_execution(t_cub *all);
 
 #endif

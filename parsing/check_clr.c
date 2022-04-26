@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_clr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 21:39:19 by momayaz           #+#    #+#             */
-/*   Updated: 2022/04/26 00:06:16 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/04/26 00:52:11 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "../include/cub3d.h"
 
 void	ft_free(t_cub  *all)
 {

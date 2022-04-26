@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 15:57:21 by momayaz           #+#    #+#             */
-/*   Updated: 2022/04/26 00:09:14 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/04/26 01:06:40 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "../include/cub3d.h"
 
 void	ft_pars(t_cub  *all, int width, int height)
 {
@@ -68,9 +68,10 @@ int	big_parss(int ac, char *av[], t_cub  *all, char c)
 	return (0);
 }
 
-int main(int ac, char *av[])
+int main(int ac, char **av)
 {
 	t_cub all;
 
-	big_parss(ac, av, &all, 'b');
+	big_parss(ac, av, &all, 'm');
+	ft_execution(&all);
 }
