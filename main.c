@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/05 23:04:16 by hdrabi            #+#    #+#             */
-/*   Updated: 2022/04/27 01:41:43 by msaouab          ###   ########.fr       */
+/*   Created: 2022/04/27 01:29:49 by msaouab           #+#    #+#             */
+/*   Updated: 2022/04/27 01:40:52 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "./include/cub3d.h"
 
-int	ft_error(char *str, int exit_status)
+int main(int ac, char *av[])
 {
-	write(2, str, ft_strlen(str));
-	exit(exit_status);
-	return (exit_status);
+	t_data all;
+	parse_map(ac, av[1], &all, 0);
+	return (0);
 }

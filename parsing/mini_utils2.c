@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   mini_utils2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hdrabi <hdrabi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 21:49:42 by hdrabi            #+#    #+#             */
-/*   Updated: 2022/04/22 14:51:19 by hdrabi           ###   ########.fr       */
+/*   Updated: 2022/04/27 01:41:56 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../include/cub3d.h"
 
 int	ft_isspace(char c)
 {
@@ -64,12 +64,4 @@ int	ft_strcmp(char *s1, char *s2)
 		i++;
 	}
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-}
-
-void	free_bonus(t_all *all)
-{
-	free(all->ray->z_buffer);
-	free(all->ray->sprit_order);
-	free(all->ray->sprit_distance);
-	free(all->ray->sprite);
 }

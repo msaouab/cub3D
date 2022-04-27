@@ -6,21 +6,20 @@
 #    By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/18 09:45:39 by msaouab           #+#    #+#              #
-#    Updated: 2022/04/26 01:10:02 by msaouab          ###   ########.fr        #
+#    Updated: 2022/04/27 01:39:05 by msaouab          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 
-SRC =	parsing/check_clr.c\
-		parsing/check_map.c\
-		parsing/cub.c\
-		parsing/pars_line.c\
-		parsing/split.c\
+SRC =	main.c\
+		parsing/ft_error.c\
+		parsing/mini_utils.c\
+		parsing/mini_utils2.c\
+		parsing/parse_map.c\
 		parsing/utils.c\
-		parsing/utils1.c\
 		parsing/utils2.c\
-		execution/execution.c\
+		parsing/utils3.c\
 
 OBJ = ${SRC:.c=.o}
 
