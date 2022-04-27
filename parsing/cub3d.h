@@ -6,7 +6,7 @@
 /*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 22:01:15 by hdrabi            #+#    #+#             */
-/*   Updated: 2022/04/27 00:15:16 by momayaz          ###   ########.fr       */
+/*   Updated: 2022/04/27 01:28:00 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ int				ft_atoi(const char *str);
 void			ft_check_texture(t_data *data, char c, char *line, int *cp);
 void			count_height(int fd, t_data *data);
 void			fill_map(t_data *data, char *filename);
-void			free_all(t_data *data, t_all *all);
-void			free_bonus(t_all *all);
+void			free_all(t_data *data);
 void			check_walls(t_data *data, int mode);
 void			parse_map(int ac, char *filename, t_data *data, int mode);
+int				ft_error(char *str, int exit_status);
 
 #endif

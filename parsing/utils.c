@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hdrabi <hdrabi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: momayaz <momayaz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 16:31:14 by hdrabi            #+#    #+#             */
-/*   Updated: 2022/04/22 14:46:02 by hdrabi           ###   ########.fr       */
+/*   Updated: 2022/04/27 01:27:09 by momayaz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	count_height(int fd, t_data *data)
 	data->height = ++cp;
 }
 
-void	free_all(t_data *data, t_all *all)
+void	free_all(t_data *data)
 {
 	int	i;
 
@@ -96,8 +96,4 @@ void	free_all(t_data *data, t_all *all)
 	while (data->map[++i])
 		free(data->map[i]);
 	free(data->map);
-	i = -1;
-	while (++i < SCREEN_H)
-		free(all->ray->buffer[i]);
-	free(all->ray->buffer);
 }
