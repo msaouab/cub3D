@@ -5,43 +5,67 @@
 #                                                     +:+ +:+         +:+      #
 #    By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/01/18 09:45:39 by msaouab           #+#    #+#              #
-#    Updated: 2022/04/27 01:39:05 by msaouab          ###   ########.fr        #
+#    Created: 2022/01/18 09:45:39 by iqessam           #+#    #+#              #
+#    Updated: 2022/07/13 15:03:15 by msaouab          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cub3d
+NAME = Cub3D
 
-SRC =	main.c\
-		parsing/ft_error.c\
-		parsing/mini_utils.c\
-		parsing/mini_utils2.c\
-		parsing/parse_map.c\
-		parsing/utils.c\
-		parsing/utils2.c\
-		parsing/utils3.c\
-
-OBJ = ${SRC:.c=.o}
-
-CC = gcc
-
-CFLAGS = -Wall -Wextra -Werror
-
-print = ft_printf/ft_printf.a
+HEADER = include/cub3d.h
 
 MLX = -lmlx -framework OpenGL -framework AppKit
 
-all : $(NAME) clean
+CC = gcc
 
-$(NAME): $(OBJ)
-	@make -C ft_printf
+green = `tput setaf 2`
+
+red = `tput setaf 3`
+
+clr = `tput setaf 8`
+
+bold = $(shell tput bold)
+
+ED = \033[0m
+
+CFLAGS = -Wall -Wextra -Werror
+
+SRC =	./parsing/main.c\
+		./parsing/parsing.c\
+		./parsing/parsing_head.c\
+		./parsing/parsing_body.c\
+		./gnl/get_next_line.c\
+		./gnl/get_next_line_utils.c\
+		./utils/errors_file.c\
+		./utils/ft_putchar_fd.c\
+		./utils/ft_putstr_fd.c\
+		./utils/ft_strrchr.c\
+		./utils/ft_strcmp.c\
+		./utils/ft_isdigit.c\
+		./utils/ft_strtrim.c\
+		./utils/ft_atoi.c\
+
+OBJ = ${SRC:%.c=%.o}
+
+%.o : %.c
+		@$(CC) $(CFLAGS)  -c $< -o $@
+		@echo "${bold}${clr}.:|	$<		|:.$(green)[OK] ${ED}"
+
+all : $(NAME)
+
+$(NAME): $(OBJ) $(HEADER)
 	@$(CC) $(CFLAGS) $(OBJ) $(MLX) -o $(NAME)
+	@echo "${bold}${green}.:|$(green)	CREATION LIBRARY	|:. ==> [OK]${ED}"
+	@echo "${bold}${green}.:|$(green)		DONE		|:. ==> [OK]${ED}"
+	@rm -f */*.o
+	@echo "${bold}$(green).:|${red}	   REMOVE OBJ_FILE	$(green)|:. ==> [OK]${ED}"
 
 clean :
-		@rm -rf $(OBJ)
+	@rm -f $(OBJ)
+	@echo "${bold}$(green).:|${red}	   REMOVE OBJ_FILE	$(green)|:. ==> [OK]${ED}"
 
 fclean : clean
-		rm -rf $(NAME)
-		@make -C ft_printf fclean
+		@rm -f $(NAME)
+		@echo "${bold}$(green).:|${red}	   REMOVE EXECUTABLE	$(green)|:. ==> [OK]${ED}"
 
 re : fclean all

@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/27 01:29:49 by msaouab           #+#    #+#             */
-/*   Updated: 2022/04/27 01:40:52 by msaouab          ###   ########.fr       */
+/*   Created: 2021/11/01 10:19:27 by msaouab           #+#    #+#             */
+/*   Updated: 2022/07/13 13:25:36 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/cub3d.h"
+#include "../include/cub3d.h"
 
-int main(int ac, char *av[])
+int	ft_isdigit(int c)
 {
-	t_data all;
-	parse_map(ac, av[1], &all, 0);
+	if (c >= '0' && c <= '9')
+		return (1);
+	if (c == ',')
+		return (2);
 	return (0);
 }

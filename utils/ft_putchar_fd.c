@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/05 23:04:16 by hdrabi            #+#    #+#             */
-/*   Updated: 2022/04/27 01:41:43 by msaouab          ###   ########.fr       */
+/*   Created: 2019/10/27 15:40:05 by mbelaman          #+#    #+#             */
+/*   Updated: 2022/07/08 12:33:05 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int	ft_error(char *str, int exit_status)
+void	ft_putchar_fd(char c, int fd)
 {
-	write(2, str, ft_strlen(str));
-	exit(exit_status);
-	return (exit_status);
+	write(fd, &c, 1);
 }

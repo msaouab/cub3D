@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_char.c                                          :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaouab <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/27 20:44:19 by msaouab           #+#    #+#             */
-/*   Updated: 2021/11/27 21:33:06 by msaouab          ###   ########.fr       */
+/*   Created: 2022/07/07 17:34:38 by msaouab           #+#    #+#             */
+/*   Updated: 2022/07/15 12:21:43 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../include/cub3d.h"
 
-void	ft_putchar(char c, int *len)
+int	main(int ac, char **av)
 {
-	write(1, &c, 1);
-	(*len)++;
-}
+	t_cub	cub;
 
-void	ft_putstr(char *str, int *len)
-{
-	int	i;
-
-	i = 0;
-	if (!str)
-		ft_putstr("(null)", len);
+	if (ac == 2)
+		ft_parsing(&cub, av[1]);
 	else
-		while (str[i])
-			ft_putchar(str[i++], len);
+		return (ft_error("Cub3D: Bad Arguments\n", 0));
+	ft_error("parsing body done\n", 1);
+	return (0);
 }
