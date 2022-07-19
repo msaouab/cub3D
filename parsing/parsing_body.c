@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 15:03:28 by msaouab           #+#    #+#             */
-/*   Updated: 2022/07/17 17:36:28 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/07/18 17:10:53 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ void	parsing_vertical(t_cub *cub)
 		j++;
 	}
 	check_first_last_line(cub);
+	parse_char(cub);
 }
 
 void	read_body(t_cub *cub)

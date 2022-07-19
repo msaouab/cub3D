@@ -6,7 +6,7 @@
 #    By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/18 09:45:39 by iqessam           #+#    #+#              #
-#    Updated: 2022/07/13 15:03:15 by msaouab          ###   ########.fr        #
+#    Updated: 2022/07/19 18:33:31 by msaouab          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = Cub3D
 
 HEADER = include/cub3d.h
 
-MLX = -lmlx -framework OpenGL -framework AppKit
+MLX = -framework OpenGL -framework AppKit
 
 CC = gcc
 
@@ -34,10 +34,11 @@ SRC =	./parsing/main.c\
 		./parsing/parsing.c\
 		./parsing/parsing_head.c\
 		./parsing/parsing_body.c\
+		./parsing/parse_charcters.c\
+		./execution/mlx_main.c\
 		./gnl/get_next_line.c\
 		./gnl/get_next_line_utils.c\
 		./utils/errors_file.c\
-		./utils/ft_putchar_fd.c\
 		./utils/ft_putstr_fd.c\
 		./utils/ft_strrchr.c\
 		./utils/ft_strcmp.c\
@@ -48,7 +49,7 @@ SRC =	./parsing/main.c\
 OBJ = ${SRC:%.c=%.o}
 
 %.o : %.c
-		@$(CC) $(CFLAGS)  -c $< -o $@
+		@$(CC) $(CFLAGS) -c $< -o $@
 		@echo "${bold}${clr}.:|	$<		|:.$(green)[OK] ${ED}"
 
 all : $(NAME)

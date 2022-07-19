@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 19:07:28 by msaouab           #+#    #+#             */
-/*   Updated: 2022/07/15 18:04:29 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/07/18 16:46:08 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,17 @@ void	head_texture(t_cub *cub)
 	cub->fd = open(&cub->tmp[3], O_RDONLY);
 	if (cub->fd < 0)
 		ft_error("files texture not found\n", 0);
+	if (cub->tmp[0] == 'N')
+		cub->fd_texture[0] = cub->fd;
+	if (cub->tmp[0] == 'S')
+		cub->fd_texture[1] = cub->fd;
+	if (cub->tmp[0] == 'E')
+		cub->fd_texture[2] = cub->fd;
+	if (cub->tmp[0] == 'W')
+		cub->fd_texture[3] = cub->fd;
 }
 
-void	head_rgb(char *tmp)
+void	head_rgb(t_cub *cub, char *tmp, char c)
 {
 	int	i;
 
@@ -33,6 +41,7 @@ void	head_rgb(char *tmp)
 			ft_error("RGB Colors Not valid\n", 0);
 		i++;
 	}
+	rgb_to_hex(cub, tmp, c);
 }
 
 void	check_head(t_cub *cub)
@@ -44,9 +53,9 @@ void	check_head(t_cub *cub)
 	{
 		cub->tmp = ft_strtrim(cub->map[i], " ");
 		if (cub->tmp[0] == 'C' && cub->tmp[1] == ' ')
-			head_rgb(&cub->tmp[2]);
+			head_rgb(cub, &cub->tmp[2], 'C');
 		else if (cub->tmp[0] == 'F' && cub->tmp[1] == ' ')
-			head_rgb(&cub->tmp[2]);
+			head_rgb(cub, &cub->tmp[2], 'F');
 		else if (cub->tmp[0] == 'N' && cub->tmp[2] == ' ')
 			head_texture(cub);
 		else if (cub->tmp[0] == 'S' && cub->tmp[2] == ' ')

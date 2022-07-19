@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 13:18:38 by msaouab           #+#    #+#             */
-/*   Updated: 2022/07/15 12:21:33 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/07/19 18:22:28 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@ void	ft_init(t_cub *cub)
 	cub->_s = 0;
 	cub->_e = 0;
 	cub->_w = 0;
+	cub->_d = 0;
+	cub->_p = 0;
+	cub->rgb_c = 0;
+	cub->rgb_f = 0;
 }
 
 void	parsing_map(t_cub *cub)
@@ -76,7 +80,7 @@ void	ft_readmap(t_cub *cub, char *file)
 
 	i = 0;
 	count_line_in_map(cub, file);
-	cub->fd = open(file, O_RDONLY);
+	cub->fd = open(file, O_RDONLY);//
 	if (cub->fd < 0)
 		return ;
 	cub->map = malloc(sizeof(char *) * cub->count_line + 1);
@@ -98,5 +102,6 @@ int	ft_parsing(t_cub *cub, char *av)
 	if (ft_strcmp(".cub", s) != 0)
 		return (ft_error(av, 0) && ft_error(" Not '.cub' extension\n", 1));
 	ft_readmap(cub, av);
+	// ft_error("parsing body done\n", 1);
 	return (0);
 }

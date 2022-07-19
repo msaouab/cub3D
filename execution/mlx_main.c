@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors_file.c                                      :+:      :+:    :+:   */
+/*   mlx_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/08 11:55:38 by msaouab           #+#    #+#             */
-/*   Updated: 2022/07/18 17:08:15 by msaouab          ###   ########.fr       */
+/*   Created: 2022/07/18 17:26:20 by msaouab           #+#    #+#             */
+/*   Updated: 2022/07/19 18:22:18 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	ft_free(char **str)
+void	mlx_main(t_mlx *mlx)
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
-		free(str[i++]);
-	free(str);
-}
-
-int	ft_error(char *str, int n)
-{
-	if (!n)
-		ft_putstr_fd("error: ", 2);
-	ft_putstr_fd(str, 2);
-	exit (1);
+	mlx->mlx = mlx_init();
+	mlx->mlx_win = mlx_new_window(mlx->mlx, 1080, 720, "Cub3D");
+	mlx_loop(mlx->mlx);
 }
