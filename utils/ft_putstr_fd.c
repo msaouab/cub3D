@@ -6,11 +6,11 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 11:37:11 by msaouab           #+#    #+#             */
-/*   Updated: 2022/07/08 15:56:54 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/17 12:18:07 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../includes/cub3d.h"
 
 void	ft_putstr_fd(char *s, int fd)
 {

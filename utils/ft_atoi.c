@@ -6,11 +6,11 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 15:32:41 by msaouab           #+#    #+#             */
-/*   Updated: 2022/07/13 12:31:30 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/17 12:18:01 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../includes/cub3d.h"
 
 int	ft_atoi(const char *str)
 {

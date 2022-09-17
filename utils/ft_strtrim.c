@@ -6,11 +6,11 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 15:47:29 by msaouab           #+#    #+#             */
-/*   Updated: 2022/07/08 20:09:35 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/17 12:18:14 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../includes/cub3d.h"
 
 static int	checkstart(char *set, char *s)
 {

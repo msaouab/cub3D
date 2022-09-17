@@ -6,11 +6,11 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 11:55:38 by msaouab           #+#    #+#             */
-/*   Updated: 2022/07/18 17:08:15 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/17 12:17:58 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../includes/cub3d.h"
 
 void	ft_free(char **str)
 {

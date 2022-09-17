@@ -6,13 +6,13 @@
 #    By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/18 09:45:39 by iqessam           #+#    #+#              #
-#    Updated: 2022/07/19 18:33:31 by msaouab          ###   ########.fr        #
+#    Updated: 2022/09/17 19:44:02 by msaouab          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = Cub3D
 
-HEADER = include/cub3d.h
+HEADER = includes/cub3d.h
 
 MLX = -framework OpenGL -framework AppKit
 
@@ -30,21 +30,20 @@ ED = \033[0m
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRC =	./parsing/main.c\
-		./parsing/parsing.c\
-		./parsing/parsing_head.c\
-		./parsing/parsing_body.c\
-		./parsing/parse_charcters.c\
-		./execution/mlx_main.c\
+SRC =	./Mandatory/parsing/main.c\
+		./Mandatory/parsing/ft_parse.c\
+		./Mandatory/parsing/parse_head.c\
+		./Mandatory/parsing/parse_body.c\
+		./utils/errors_file.c\
+		./utils/ft_atoi.c\
+		./utils/ft_isdigit.c\
+		./utils/ft_putchar_fd.c\
+		./utils/ft_putstr_fd.c\
+		./utils/ft_strcmp.c\
+		./utils/ft_strrchr.c\
+		./utils/ft_strtrim.c\
 		./gnl/get_next_line.c\
 		./gnl/get_next_line_utils.c\
-		./utils/errors_file.c\
-		./utils/ft_putstr_fd.c\
-		./utils/ft_strrchr.c\
-		./utils/ft_strcmp.c\
-		./utils/ft_isdigit.c\
-		./utils/ft_strtrim.c\
-		./utils/ft_atoi.c\
 
 OBJ = ${SRC:%.c=%.o}
 
@@ -52,13 +51,14 @@ OBJ = ${SRC:%.c=%.o}
 		@$(CC) $(CFLAGS) -c $< -o $@
 		@echo "${bold}${clr}.:|	$<		|:.$(green)[OK] ${ED}"
 
-all : $(NAME)
+all : $(NAME) clean
 
 $(NAME): $(OBJ) $(HEADER)
 	@$(CC) $(CFLAGS) $(OBJ) $(MLX) -o $(NAME)
 	@echo "${bold}${green}.:|$(green)	CREATION LIBRARY	|:. ==> [OK]${ED}"
 	@echo "${bold}${green}.:|$(green)		DONE		|:. ==> [OK]${ED}"
 	@rm -f */*.o
+	@rm -f */*/*.o
 	@echo "${bold}$(green).:|${red}	   REMOVE OBJ_FILE	$(green)|:. ==> [OK]${ED}"
 
 clean :
@@ -69,4 +69,4 @@ fclean : clean
 		@rm -f $(NAME)
 		@echo "${bold}$(green).:|${red}	   REMOVE EXECUTABLE	$(green)|:. ==> [OK]${ED}"
 
-re : fclean all
+re :  fclean all

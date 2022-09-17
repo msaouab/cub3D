@@ -6,11 +6,11 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 14:11:26 by msaouab           #+#    #+#             */
-/*   Updated: 2022/07/08 16:16:17 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/17 12:18:09 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../includes/cub3d.h"
 
 int	ft_strcmp(char *s1, char *s2)
 {

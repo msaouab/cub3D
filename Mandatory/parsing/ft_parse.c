@@ -1,46 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   ft_parse.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/08 13:18:38 by msaouab           #+#    #+#             */
-/*   Updated: 2022/07/19 18:22:28 by msaouab          ###   ########.fr       */
+/*   Created: 2022/09/17 11:43:26 by msaouab           #+#    #+#             */
+/*   Updated: 2022/09/17 21:16:41 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../includes/cub3d.h"
 
-void	ft_init(t_cub *cub)
+void	ft_init_parse(t_cub *cub)
 {
 	cub->head_map = 0;
-	cub->_c = 0;
-	cub->_f = 0;
-	cub->_n = 0;
-	cub->_s = 0;
-	cub->_e = 0;
-	cub->_w = 0;
-	cub->_d = 0;
-	cub->_p = 0;
+	cub->count_ln = 0;
+	cub->head_map = 0;
+	cub->celling = 0;
+	cub->floor = 0;
+	cub->rgb_c = 0;
+	cub->rgb_f = 0;
+	cub->cnt = 0;
 	cub->rgb_c = 0;
 	cub->rgb_f = 0;
 }
 
-void	parsing_map(t_cub *cub)
+void	parsing_map(t_cub *cub, char **map)
 {
 	int	i;
 	int	j;
 
 	i = -1;
-	ft_init(cub);
-	while (cub->map[++i])
+	while (map[++i])
 	{
 		j = 0;
-		while (cub->map[i][j] && (ft_isdigit(cub->map[i][j]) == 1 ||
-			cub->map[i][j] == ' '))
+		while (map[i][j] && (ft_isdigit(map[i][j]) == 1 || map[i][j] == ' '))
 		{
-			if (cub->map[i][j] == '1' || cub->map[i][j] == '1')
+			if (map[i][j] == '1' || map[i][j] == ' ')
 			{
 				cub->head_map = i;
 				break ;
@@ -50,58 +47,59 @@ void	parsing_map(t_cub *cub)
 		if (cub->head_map == i && i != 0)
 			break ;
 	}
-	read_head(cub);
-	read_body(cub);
+	read_head(cub, map);
+	read_body(cub, map);
 }
 
 void	count_line_in_map(t_cub *cub, char *file)
 {
 	char	*buff;
+	int		fd;
 
-	cub->fd = open(file, O_RDONLY);
-	if (cub->fd < 0)
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
 		return ;
-	cub->count_line = 0;
 	while (1)
 	{
-		buff = get_next_line(cub->fd);
+		buff = get_next_line(fd);
 		if (!buff)
 			break ;
-		cub->count_line++;
+		cub->count_ln++;
 		free (buff);
 	}
-	close (cub->fd);
+	close (fd);
 }
 
 void	ft_readmap(t_cub *cub, char *file)
 {
-	int	i;
-	int	j;
+	char	**map;
+	int		fd;
+	int		i;
 
-	i = 0;
 	count_line_in_map(cub, file);
-	cub->fd = open(file, O_RDONLY);//
-	if (cub->fd < 0)
-		return ;
-	cub->map = malloc(sizeof(char *) * cub->count_line + 1);
-	if (!cub->map)
-		return ;
-	j = cub->count_line;
-	while (j-- > 0)
-		cub->map[i++] = get_next_line(cub->fd);
-	parsing_map(cub);
+	map = malloc(sizeof(char *) * cub->count_ln + 1);
+	if (!map)
+		ft_error("map: allocation problem please try again\n", 0);
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		ft_error(ft_strjoin(file, " file Not found\n"), 0);
+	i = 0;
+	while (i < cub->count_ln)
+		map[i++] = get_next_line(fd);
+	map[i] = NULL;
+	parsing_map(cub, map);
 }
 
 int	ft_parsing(t_cub *cub, char *av)
 {
 	char	*s;
 
+	ft_init_parse(cub);
 	s = ft_strrchr(av, '.');
 	if (!s)
 		return (ft_error(" Not '.cub' extension\n", 0));
 	if (ft_strcmp(".cub", s) != 0)
-		return (ft_error(av, 0) && ft_error(" Not '.cub' extension\n", 1));
+		return (ft_error(ft_strjoin(av, " Not '.cub' extension\n"), 0));
 	ft_readmap(cub, av);
-	// ft_error("parsing body done\n", 1);
 	return (0);
 }
