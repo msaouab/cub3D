@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 09:34:00 by iqessam           #+#    #+#             */
-/*   Updated: 2022/09/17 21:11:43 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/18 19:55:20 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ typedef struct s_cub
 	char	*north;
 	char	*west;
 	char	*east;
+	int		len;
+	int		ac;
 	int		cnt;
 	int		rgb_c;
 	int		rgb_f;
