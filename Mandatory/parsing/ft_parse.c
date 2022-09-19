@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 11:43:26 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/17 21:16:41 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/19 08:12:41 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	ft_init_parse(t_cub *cub)
 	cub->head_map = 0;
 	cub->celling = 0;
 	cub->floor = 0;
+	cub->player = 0;
 	cub->rgb_c = 0;
 	cub->rgb_f = 0;
 	cub->cnt = 0;

@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 19:44:43 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/18 20:51:13 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/19 08:03:32 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,25 @@ void	parse_vertical(t_cub *cub)
 	j = 0;
 	while (j < cub->len)
 	{
-		i = 0;
+		if ((cub->body[cub->ac - 1][j] != ' ' \
+			&& cub->body[cub->ac - 1][j] != '1') \
+			|| (cub->body[0][j] != ' ' && cub->body[0][j] != '1'))
+			ft_error("==> The map must be closed/surrounded by walls\n", 0);
+		i = 1;
 		while (i < cub->ac)
 		{
-			if (i != 0 && cub->body[i][j] == ' ' && cub->body[i - 1][j] != '1')
+			if (i != 1 && cub->body[i][j] == ' ' && cub->body[i - 1][j] != '1')
 				ft_error("The map must be closed/surrounded by walls\n", 0);
 			while (i < cub->ac - 1 && cub->body[i][j] == ' ')
 				i++;
-			if (i != cub->ac - 1 && cub->body[i - 1][j] == ' ' && cub->body[i][j] == '1')
+			if (i != cub->ac - 1 && cub->body[i - 1][j] == ' '\
+				&& cub->body[i][j] != '1')
 				ft_error("The map must be closed/surrounded by walls\n", 0);
 			i++;
 		}
 		j++;
 	}
+	parse_content(cub);
 }
 
 void	parse_horizantal(t_cub *cub, char **map)

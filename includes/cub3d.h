@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 09:34:00 by iqessam           #+#    #+#             */
-/*   Updated: 2022/09/18 19:55:20 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/19 08:14:40 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ typedef struct s_cub
 	char	*north;
 	char	*west;
 	char	*east;
+	char	type;
+	int		player;
 	int		len;
 	int		ac;
 	int		cnt;
@@ -64,6 +66,7 @@ int		ft_parsing(t_cub *cub, char *av);
 void	fill_map(t_cub *cub);
 void	read_head(t_cub *cub, char **map);
 void	read_body(t_cub *cub, char **map);
+void	parse_content(t_cub *cub);
 
 // --------------Execution functions---------------------
 

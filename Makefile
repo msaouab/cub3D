@@ -6,7 +6,7 @@
 #    By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/18 09:45:39 by iqessam           #+#    #+#              #
-#    Updated: 2022/09/17 19:44:02 by msaouab          ###   ########.fr        #
+#    Updated: 2022/09/19 08:03:43 by msaouab          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRC =	./Mandatory/parsing/main.c\
 		./Mandatory/parsing/ft_parse.c\
 		./Mandatory/parsing/parse_head.c\
 		./Mandatory/parsing/parse_body.c\
+		./Mandatory/parsing/parse_content.c\
 		./utils/errors_file.c\
 		./utils/ft_atoi.c\
 		./utils/ft_isdigit.c\
