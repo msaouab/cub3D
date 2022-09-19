@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 09:34:00 by iqessam           #+#    #+#             */
-/*   Updated: 2022/09/19 08:14:40 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/19 13:48:59 by iqessam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,10 @@ typedef struct s_cub
 	int		rgb_c;
 	int		rgb_f;
 	int		big_ln;
+	int		Ntext;
+	int		Stext;
+	int		Wtext;
+	int		Etext;
 }	t_cub;
 
 typedef struct s_raycast
