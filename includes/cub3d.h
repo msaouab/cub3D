@@ -6,6 +6,7 @@
 /*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 09:34:00 by iqessam           #+#    #+#             */
+/*   Updated: 2022/09/19 13:27:52 by msaouab          ###   ########.fr       */
 /*   Updated: 2022/09/19 13:48:59 by iqessam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -18,7 +19,13 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <math.h>
+# include <mlx.h>
 # include "../gnl/get_next_line.h"
+
+# define R_WIDTH 1280
+# define R_HEIGHT 720
+# define M_MAP_W 100
+# define M_MAP_H 70
 
 // --------------Structs for parsing---------------------
 
@@ -48,12 +55,29 @@ typedef struct s_cub
 	int		Etext;
 }	t_cub;
 
-typedef struct s_raycast
+typedef struct s_move
 {
-	t_cub		*cub;
-}	t_raycast;
+	int		x;
+	int		y;
+	int		cam_vue;
+	float	inc_speed;
+}	t_move;
 
-// ----------------Utils_functions-----------------------
+// --------------Structs for raycasting-----------------------
+
+typedef struct s_ray
+{
+	void	*mlx;
+	void	*win;
+	void	*img;
+	int		posx;
+	int		posy;
+	float	ra;
+	t_cub	*cub;
+	t_move	move;
+}	t_ray;
+
+// ----------------Utils_functions----------------------------
 
 void	ft_putstr_fd(char *s, int fd);
 char	*ft_strrchr(const char *s, int c);
@@ -64,7 +88,7 @@ void	ft_free(char **str);
 int		ft_atoi(const char *str);
 int		ft_isdigit(int c);
 
-// ---------------Parsing functions----------------------
+// ---------------Parsing functions---------------------------
 
 int		ft_parsing(t_cub *cub, char *av);
 void	fill_map(t_cub *cub);
@@ -72,6 +96,16 @@ void	read_head(t_cub *cub, char **map);
 void	read_body(t_cub *cub, char **map);
 void	parse_content(t_cub *cub);
 
-// --------------Execution functions---------------------
+// --------------Raycasting functions-------------------------
+
+void	raycast(t_ray *ray);
+void	my_mlx_button(t_ray *ray);
+void	move_left(t_ray *ray);
+void	move_right(t_ray *ray);
+void	move_down(t_ray *ray);
+void	move_up(t_ray *ray);
+void	cam_left(t_ray *ray);
+void	cam_right(t_ray *ray);
+void	get_player_angle(t_ray *ray);
 
 #endif

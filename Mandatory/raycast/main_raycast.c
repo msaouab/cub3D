@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_raycast.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/17 11:39:11 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/19 13:38:54 by msaouab          ###   ########.fr       */
+/*   Created: 2022/09/19 08:44:28 by msaouab           #+#    #+#             */
+/*   Updated: 2022/09/19 13:39:08 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	main(int argc, char **av)
+void	ft_init_ray(t_ray *ray)
 {
-	t_ray	ray;
-	t_cub	cub;
+	ray->ra = 0;
+	ray->posx = 0;
+	ray->posy = 0;
+}
 
-	ray.cub = &cub;
-	if (argc == 2)
-		ft_parsing(&cub, av[1]);
-	else
-		return (ft_error("Cub3D: Bad Arguments\n", 0));
-	ft_error("parsing done", 1);
-	// raycast(&ray);
-	return (0);
+void	raycast(t_ray *ray)
+{
+	ft_init_ray(ray);
+	ray->mlx = mlx_init();
+	// min_map(ray);
+	ray->win = mlx_new_window(ray->mlx, R_WIDTH, R_HEIGHT, "Cub3D");
+	my_mlx_button(ray);
+	mlx_loop(ray->mlx);
 }
