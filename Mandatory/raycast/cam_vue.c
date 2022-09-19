@@ -1,28 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cam_vue.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/17 11:39:11 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/19 13:38:54 by msaouab          ###   ########.fr       */
+/*   Created: 2022/09/19 13:06:54 by msaouab           #+#    #+#             */
+/*   Updated: 2022/09/19 13:23:13 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	main(int argc, char **av)
+void	get_player_angle(t_ray *ray)
 {
-	t_ray	ray;
-	t_cub	cub;
+	if (ray->cub->type == 'N')
+		ray->ra = 3 * M_PI_2;
+	if (ray->cub->type == 'S')
+		ray->ra = M_PI_2;
+	if (ray->cub->type == 'W')
+		ray->ra = M_PI;
+	if (ray->cub->type == 'E')
+		ray->ra = 0;
+}
 
-	ray.cub = &cub;
-	if (argc == 2)
-		ft_parsing(&cub, av[1]);
-	else
-		return (ft_error("Cub3D: Bad Arguments\n", 0));
-	ft_error("parsing done", 1);
-	// raycast(&ray);
-	return (0);
+void	cam_left(t_ray *ray)
+{
+	ray->ra -= 0.05;
+	if (ray->ra <= 0)
+		ray->ra += 2 * M_PI;
+}
+
+void	cam_right(t_ray *ray)
+{
+	ray->ra += 0.05;
+	if (ray->ra >= 2 * M_PI)
+		ray->ra -= 2 * M_PI;
 }
