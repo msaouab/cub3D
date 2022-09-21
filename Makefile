@@ -6,7 +6,7 @@
 #    By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/18 09:45:39 by iqessam           #+#    #+#              #
-#    Updated: 2022/09/19 13:02:20 by msaouab          ###   ########.fr        #
+#    Updated: 2022/09/21 20:37:15 by msaouab          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,9 +35,13 @@ SRC =	./Mandatory/parsing/main.c\
 		./Mandatory/parsing/parse_head.c\
 		./Mandatory/parsing/parse_body.c\
 		./Mandatory/parsing/parse_content.c\
-		./Mandatory/raycast/main_raycast.c\
+		./Mandatory/raycast/raycast.c\
 		./Mandatory/raycast/mlx_button.c\
 		./Mandatory/raycast/mlx_key.c\
+		./Mandatory/raycast/mini_map.c\
+		./Mandatory/raycast/cam_vue.c\
+		./Mandatory/raycast/init_ray.c\
+		./Mandatory/raycast/dda_algorithm.c\
 		./utils/errors_file.c\
 		./utils/ft_atoi.c\
 		./utils/ft_isdigit.c\

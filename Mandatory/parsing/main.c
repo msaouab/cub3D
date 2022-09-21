@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 11:39:11 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/19 13:38:54 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/19 14:54:04 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	main(int argc, char **av)
 		ft_parsing(&cub, av[1]);
 	else
 		return (ft_error("Cub3D: Bad Arguments\n", 0));
-	ft_error("parsing done", 1);
-	// raycast(&ray);
+	raycast(&ray);
 	return (0);
 }

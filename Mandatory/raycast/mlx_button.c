@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 09:58:20 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/19 13:39:20 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/21 21:28:57 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_release(int keycode, t_ray *ray)
 	else if (keycode == 123 || keycode == 124)
 		ray->move.cam_vue = 0;
 	else if (keycode == 53)
-		exit(0);
+		ft_cross();
 	else if (keycode == 78)
 		ray->move.inc_speed = 0;
 	else if (keycode == 69)
@@ -51,11 +51,7 @@ int	ft_event(int keycode, t_ray *ray)
 	else if (keycode == 124)
 		ray->move.cam_vue = 1;
 	else if (keycode == 53)
-		exit(0);
-	else if (keycode == 78)
-		ray->move.inc_speed = -1;
-	else if (keycode == 69)
-		ray->move.inc_speed = 1;
+		ft_cross();
 	else
 		return (0);
 	return (0);
@@ -76,7 +72,7 @@ int	ft_frame(t_ray *ray)
 	if (ray->move.cam_vue == 1)
 		cam_right(ray);
 	mlx_clear_window(ray->mlx, ray->win);
-	// draw_map_2D(ray);
+	puts_minimap(ray);
 	mlx_put_image_to_window(ray->mlx, ray->win, ray->img, 0, 0);
 	return (0);
 }

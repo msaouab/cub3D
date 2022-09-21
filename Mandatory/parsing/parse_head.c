@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_head.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
+/*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 15:24:57 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/19 13:56:34 by iqessam          ###   ########.fr       */
+/*   Updated: 2022/09/19 15:00:33 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,6 @@ void	rgb_to_hex(t_cub *cub, char *tmp, char c)
 	cub->floor *= 25.69919741;
 }
 
-void	texture_counter(t_cub *cub, char c)
-{
-	if (c == 'N')
-		cub->Ntext++;
-	if (c == 'S')
-		cub->Stext++;
-	if (c == 'E')
-		cub->Etext++;
-	if (c == 'W')
-		cub->Wtext++;
-}
 void	head_texture(t_cub *cub, char c)
 {
 	char	*s;
@@ -101,9 +90,9 @@ void	check_read_head(t_cub *cub)
 		ft_error("Error RGB arguments number incorrect  \n", 0);
 	if (!cub->south || !cub->north || !cub->west || !cub->east)
 		ft_error("Error texture arguments number incorrect\n", 0);
-	if (cub->Ntext != 1 || cub->Stext != 1 || cub->Etext != 1 || cub->Wtext != 1 )
+	if (cub->ntext != 1 || cub->stext != 1 \
+		|| cub->etext != 1 || cub->wtext != 1)
 		ft_error("Error texture arguments number incorrect\n", 0);
-		
 }
 
 void	read_head(t_cub *cub, char **map)
