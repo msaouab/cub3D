@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 09:34:00 by iqessam           #+#    #+#             */
-/*   Updated: 2022/09/21 21:32:50 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/22 20:55:51 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,14 @@
 # include <fcntl.h>
 # include <math.h>
 # include <mlx.h>
-# include "../gnl/get_next_line.h"
+# include "../utils/get_next_line.h"
 
 # define R_WIDTH 1280
 # define R_HEIGHT 720
-// # define FOV_ANGLE 60 * (M_PI / 180)
-// # define wall_strip 90
-// # define num_rays (R_WIDTH / wall_strip)
+// # define ANGLE M_PI / 180
+// # define FOV_ANGLE 60 * angle
+# define WALL_STRIP 90
+// # define NUM_RAYS R_WIDTH / WALL_STRIP
 
 // --------------Structs for parsing---------------------
 
@@ -74,15 +75,18 @@ typedef struct s_ray
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-	int		posx;
-	int		posy;
-	float	ra;
+	double	posx;
+	double	posy;
+	double	ra;
 	int		minix;
 	int		miniy;
 	double	dirx;
 	double	diry;
 	double	xinter;
 	double	yinter;
+	double	angle;
+	double	fov_angle;
+	double	num_rays;
 	t_cub	*cub;
 	t_move	move;
 }	t_ray;
@@ -118,10 +122,11 @@ void	move_up(t_ray *ray);
 void	cam_left(t_ray *ray);
 void	cam_right(t_ray *ray);
 void	xpmfile(t_ray *ray);
-void	my_mlx_pixel_put(t_ray *ray, int x, int y, int color);
-void	ft_init_ray(t_ray *ray);
-void	puts_minimap(t_ray *ray);
+void	my_mlx_pixel_put(t_ray *ray, int x, int y, unsigned int color);
+void	init_ray(t_ray *ray);
+void	put_minimap(t_ray *ray);
 void	dda_algorithm(t_ray *ray, int color);
 void	field_vue(t_ray *ray, unsigned int color);
+void	put_rays(t_ray *ray, unsigned int color);
 
 #endif

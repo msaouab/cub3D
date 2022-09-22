@@ -6,13 +6,13 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 15:24:28 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/21 21:35:07 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/22 20:55:31 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	get_player_angle(t_ray *ray)
+void	get_first_angle(t_ray *ray)
 {
 	if (ray->cub->type == 'N')
 		ray->ra = 3 * M_PI_2;
@@ -24,7 +24,7 @@ void	get_player_angle(t_ray *ray)
 		ray->ra = 0;
 }
 
-void	first_position(t_ray *ray)
+void	get_first_pos(t_ray *ray)
 {
 	int	i;
 	int	j;
@@ -37,8 +37,8 @@ void	first_position(t_ray *ray)
 		{
 			if (ray->cub->body[i][j] == ray->cub->type)
 			{
-				ray->posy = i * 12;
 				ray->posx = j * 12;
+				ray->posy = i * 12;
 			}
 			j++;
 		}
@@ -46,11 +46,17 @@ void	first_position(t_ray *ray)
 	}
 }
 
-void	ft_init_ray(t_ray *ray)
+void	init_ray(t_ray *ray)
 {
-	ray->ra = 0;
-	ray->posx = 0;
-	ray->posy = 0;
-	first_position(ray);
-	get_player_angle(ray);
+	ray->minix = 0;
+	ray->miniy = 0;
+	ray->move.x = 0;
+	ray->move.y = 0;
+	ray->xinter = 0;
+	ray->yinter = 0;
+	ray->angle = M_PI / 180;
+	ray->fov_angle = 60 * ray->angle;
+	ray->num_rays = ray->fov_angle / WALL_STRIP;
+	get_first_pos(ray);
+	get_first_angle(ray);
 }

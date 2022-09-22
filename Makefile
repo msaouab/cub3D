@@ -6,7 +6,7 @@
 #    By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/18 09:45:39 by iqessam           #+#    #+#              #
-#    Updated: 2022/09/21 20:37:15 by msaouab          ###   ########.fr        #
+#    Updated: 2022/09/22 12:29:55 by msaouab          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,8 +50,8 @@ SRC =	./Mandatory/parsing/main.c\
 		./utils/ft_strcmp.c\
 		./utils/ft_strrchr.c\
 		./utils/ft_strtrim.c\
-		./gnl/get_next_line.c\
-		./gnl/get_next_line_utils.c\
+		./utils/get_next_line.c\
+		./utils/get_next_line_utils.c\
 
 OBJ = ${SRC:%.c=%.o}
 
