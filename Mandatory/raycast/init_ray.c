@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 15:24:28 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/22 20:55:31 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/23 10:18:40 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ void	init_ray(t_ray *ray)
 	ray->move.y = 0;
 	ray->xinter = 0;
 	ray->yinter = 0;
-	ray->angle = M_PI / 180;
-	ray->fov_angle = 60 * ray->angle;
-	ray->num_rays = ray->fov_angle / WALL_STRIP;
+	ray->rad = M_PI / 180;
+	ray->fov_angle = 60 * (ray->rad);
+	ray->num_rays = R_WIDTH / WALL_STRIP;
 	get_first_pos(ray);
 	get_first_angle(ray);
 }

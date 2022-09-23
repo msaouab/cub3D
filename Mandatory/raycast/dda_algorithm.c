@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 19:28:31 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/22 20:50:50 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/23 10:14:28 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,14 @@ void	put_rays(t_ray *ray, unsigned int color)
 
 	i = 0;
 	columnid = 0;
-	ra_angle = ray->ra - (FOV_ANGLE / 2);
-	while (i < num_rays)
+	ra_angle = ray->ra - (ray->fov_angle / 2);
+	while (i < ray->num_rays)
 	{
 		ray->dirx = ray->posx + cos(ra_angle) * 30;
 		ray->diry = ray->posy + sin(ra_angle) * 30;
 		ray_cast(ray, columnid);
 		dda_algorithm(ray, color);
-		ra_angle += FOV_ANGLE / num_rays;
+		ra_angle += ray->fov_angle / ray->num_rays;
 		i++;
 		columnid++;
 	}
