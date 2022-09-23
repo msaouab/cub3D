@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 09:34:00 by iqessam           #+#    #+#             */
-/*   Updated: 2022/09/22 20:55:51 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/23 10:17:35 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@
 
 # define R_WIDTH 1280
 # define R_HEIGHT 720
-// # define ANGLE M_PI / 180
-// # define FOV_ANGLE 60 * angle
 # define WALL_STRIP 90
-// # define NUM_RAYS R_WIDTH / WALL_STRIP
 
 // --------------Structs for parsing---------------------
 
@@ -84,7 +81,7 @@ typedef struct s_ray
 	double	diry;
 	double	xinter;
 	double	yinter;
-	double	angle;
+	double	rad;
 	double	fov_angle;
 	double	num_rays;
 	t_cub	*cub;
