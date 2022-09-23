@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 13:26:36 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/22 20:49:33 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/23 10:42:31 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ void	put_player_win(t_ray *ray, unsigned int color)
 	int	i;
 	int	j;
 
-	i = ray->posy + 6;
-	j = ray->posx + 6;
+	i = ray->posy + 5;
+	j = ray->posx + 5;
 	my_mlx_pixel_put(ray, j, i, color);
 	put_rays(ray, color);
 }
