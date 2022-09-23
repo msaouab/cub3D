@@ -6,11 +6,23 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 08:02:37 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/19 08:28:37 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/19 15:22:17 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+void	texture_counter(t_cub *cub, char c)
+{
+	if (c == 'N')
+		cub->ntext++;
+	if (c == 'S')
+		cub->stext++;
+	if (c == 'E')
+		cub->etext++;
+	if (c == 'W')
+		cub->wtext++;
+}
 
 void	check_content(t_cub *cub, int i, int j)
 {
@@ -18,15 +30,20 @@ void	check_content(t_cub *cub, int i, int j)
 
 	k = 0;
 	if (cub->body[i][j] == 'N' || cub->body[i][j] == 'S')
+	{
+		cub->type = cub->body[i][j];
 		cub->player++;
+	}
 	else if (cub->body[i][j] == 'W' || cub->body[i][j] == 'E')
+	{
+		cub->type = cub->body[i][j];
 		cub->player++;
+	}
 	else if (cub->body[i][j] == ' ' || cub->body[i][j] == '1' \
 		|| cub->body[i][j] == '0')
 		k++;
 	else
 		ft_error("you have invalid content\n", 0);
-	cub->type = cub->body[i][j];
 }
 
 void	parse_content(t_cub *cub)

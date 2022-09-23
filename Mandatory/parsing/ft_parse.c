@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
+/*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 11:43:26 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/19 13:48:28 by iqessam          ###   ########.fr       */
+/*   Updated: 2022/09/19 15:00:17 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ void	ft_init_parse(t_cub *cub)
 	cub->cnt = 0;
 	cub->rgb_c = 0;
 	cub->rgb_f = 0;
-	cub->Ntext = 0;
-	cub->Stext = 0;
-	cub->Wtext = 0;
-	cub->Etext = 0;
+	cub->ntext = 0;
+	cub->stext = 0;
+	cub->wtext = 0;
+	cub->etext = 0;
 }
 
 void	parsing_map(t_cub *cub, char **map)

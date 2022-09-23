@@ -3,11 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
+/*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 09:34:00 by iqessam           #+#    #+#             */
-/*   Updated: 2022/09/19 13:27:52 by msaouab          ###   ########.fr       */
-/*   Updated: 2022/09/19 13:48:59 by iqessam          ###   ########.fr       */
+/*   Updated: 2022/09/22 20:55:51 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,39 +19,41 @@
 # include <fcntl.h>
 # include <math.h>
 # include <mlx.h>
-# include "../gnl/get_next_line.h"
+# include "../utils/get_next_line.h"
 
 # define R_WIDTH 1280
 # define R_HEIGHT 720
-# define M_MAP_W 100
-# define M_MAP_H 70
+// # define ANGLE M_PI / 180
+// # define FOV_ANGLE 60 * angle
+# define WALL_STRIP 90
+// # define NUM_RAYS R_WIDTH / WALL_STRIP
 
 // --------------Structs for parsing---------------------
 
 typedef struct s_cub
 {
-	int		count_ln;
-	int		head_map;
-	char	**body;
-	char	*tmp;
-	float	celling;
-	float	floor;
-	char	*south;
-	char	*north;
-	char	*west;
-	char	*east;
-	char	type;
-	int		player;
-	int		len;
-	int		ac;
-	int		cnt;
-	int		rgb_c;
-	int		rgb_f;
-	int		big_ln;
-	int		Ntext;
-	int		Stext;
-	int		Wtext;
-	int		Etext;
+	int				count_ln;
+	int				head_map;
+	char			**body;
+	char			*tmp;
+	unsigned int	celling;
+	unsigned int	floor;
+	char			*south;
+	char			*north;
+	char			*west;
+	char			*east;
+	char			type;
+	int				player;
+	int				len;
+	int				ac;
+	int				cnt;
+	int				rgb_c;
+	int				rgb_f;
+	int				big_ln;
+	int				ntext;
+	int				stext;
+	int				wtext;
+	int				etext;
 }	t_cub;
 
 typedef struct s_move
@@ -70,9 +71,22 @@ typedef struct s_ray
 	void	*mlx;
 	void	*win;
 	void	*img;
-	int		posx;
-	int		posy;
-	float	ra;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	double	posx;
+	double	posy;
+	double	ra;
+	int		minix;
+	int		miniy;
+	double	dirx;
+	double	diry;
+	double	xinter;
+	double	yinter;
+	double	angle;
+	double	fov_angle;
+	double	num_rays;
 	t_cub	*cub;
 	t_move	move;
 }	t_ray;
@@ -95,6 +109,7 @@ void	fill_map(t_cub *cub);
 void	read_head(t_cub *cub, char **map);
 void	read_body(t_cub *cub, char **map);
 void	parse_content(t_cub *cub);
+void	texture_counter(t_cub *cub, char c);
 
 // --------------Raycasting functions-------------------------
 
@@ -106,6 +121,12 @@ void	move_down(t_ray *ray);
 void	move_up(t_ray *ray);
 void	cam_left(t_ray *ray);
 void	cam_right(t_ray *ray);
-void	get_player_angle(t_ray *ray);
+void	xpmfile(t_ray *ray);
+void	my_mlx_pixel_put(t_ray *ray, int x, int y, unsigned int color);
+void	init_ray(t_ray *ray);
+void	put_minimap(t_ray *ray);
+void	dda_algorithm(t_ray *ray, int color);
+void	field_vue(t_ray *ray, unsigned int color);
+void	put_rays(t_ray *ray, unsigned int color);
 
 #endif
