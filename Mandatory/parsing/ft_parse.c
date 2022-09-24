@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 11:43:26 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/23 11:35:05 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/23 11:52:04 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,6 @@ void	parsing_map(t_cub *cub, char **map)
 	if (cub->cnt != 6)
 		ft_error("error: Error head map\n", 1);
 	read_body(cub, map);
-	i = 0;
-	while (cub->body[i])
-	{
-		printf("%s\n", cub->body[i++]);
-	}
-	
 }
 
 void	count_line_in_map(t_cub *cub, char *file)

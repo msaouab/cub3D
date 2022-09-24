@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 09:34:00 by iqessam           #+#    #+#             */
-/*   Updated: 2022/09/23 10:17:35 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/24 11:15:49 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@
 # include <mlx.h>
 # include "../utils/get_next_line.h"
 
-# define R_WIDTH 1280
+# define R_WIDTH 1080
 # define R_HEIGHT 720
 # define WALL_STRIP 90
+# define TILE_SIZE 12
 
 // --------------Structs for parsing---------------------
 
@@ -77,6 +78,8 @@ typedef struct s_ray
 	double	ra;
 	int		minix;
 	int		miniy;
+	int		w_minimap;
+	int		h_minimap;
 	double	dirx;
 	double	diry;
 	double	xinter;

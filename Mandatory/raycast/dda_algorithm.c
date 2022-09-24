@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   DDA_algorithm.c                                    :+:      :+:    :+:   */
+/*   dda_algorithm.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 19:28:31 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/23 10:14:28 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/24 18:08:09 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	dda_algorithm(t_ray *ray, int color)
 		steps = abs(dy);
 	xinc = dx / (double)steps;
 	yinc = dy / (double)steps;
-	y = ray->posy + 5;
-	x = ray->posx + 5;
+	y = ((R_HEIGHT / 5) / 2) + 5;
+	x = ((R_WIDTH / 5) / 2) + 5;
 	k = 0;
 	while (k <= steps)
 	{
