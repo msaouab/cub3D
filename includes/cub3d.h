@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 09:34:00 by iqessam           #+#    #+#             */
-/*   Updated: 2022/09/24 11:15:49 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/24 19:32:16 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,5 +128,6 @@ void	put_minimap(t_ray *ray);
 void	dda_algorithm(t_ray *ray, int color);
 void	field_vue(t_ray *ray, unsigned int color);
 void	put_rays(t_ray *ray, unsigned int color);
+int		find_walls(t_ray *ray, int x, int y);
 
 #endif
