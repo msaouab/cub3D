@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 15:24:57 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/19 15:00:33 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/23 12:07:10 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,22 @@ void	rgb_to_hex(t_cub *cub, char *tmp, char c)
 
 void	head_texture(t_cub *cub, char c)
 {
+	char	*str;
 	char	*s;
 	int		fd;
 
-	fd = open(ft_strtrim(&cub->tmp[3], " "), O_RDONLY);
+	str = ft_strtrim(&cub->tmp[3], " ");
+	fd = open(str, O_RDONLY);
 	if (fd < 0)
 		ft_error(ft_strjoin(cub->tmp, "files texture not found\n"), 0);
 	if (c == 'N')
-		cub->north = ft_strtrim(&cub->tmp[3], " ");
+		cub->north = str;
 	if (c == 'S')
-		cub->south = ft_strtrim(&cub->tmp[3], " ");
+		cub->south = str;
 	if (c == 'E')
-		cub->east = ft_strtrim(&cub->tmp[3], " ");
+		cub->east = str;
 	if (c == 'W')
-		cub->west = ft_strtrim(&cub->tmp[3], " ");
+		cub->west = str;
 	s = ft_strrchr(&cub->tmp[3], '.');
 	if (!s)
 		ft_error(" Not '.xpm' extension\n", 0);
@@ -64,6 +66,7 @@ void	head_texture(t_cub *cub, char c)
 		ft_error("error: Texture is not an '.xpm' file\n", 1);
 	texture_counter(cub, c);
 	cub->cnt++;
+	free(str);
 }
 
 void	head_rgb(t_cub *cub, char *tmp, char c)
@@ -82,6 +85,7 @@ void	head_rgb(t_cub *cub, char *tmp, char c)
 		i++;
 	}
 	rgb_to_hex(cub, tmp, c);
+	free(tmp);
 }
 
 void	check_read_head(t_cub *cub)

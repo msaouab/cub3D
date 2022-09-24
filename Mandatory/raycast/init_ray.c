@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 15:24:28 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/23 10:18:40 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/24 14:27:53 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	init_ray(t_ray *ray)
 	ray->miniy = 0;
 	ray->move.x = 0;
 	ray->move.y = 0;
+	ray->w_minimap = R_WIDTH / 5;
+	ray->h_minimap = R_HEIGHT / 5;
 	ray->xinter = 0;
 	ray->yinter = 0;
 	ray->rad = M_PI / 180;
