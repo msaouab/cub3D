@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 19:28:31 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/24 21:49:36 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/26 10:20:42 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ void	dda_algorithm(t_ray *ray, int color)
 		steps = abs(dx);
 	else
 		steps = abs(dy);
-	xinc = dx / (double)steps;
-	yinc = dy / (double)steps;
-	y = ((R_HEIGHT / 5) / 2) + 5;
-	x = ((R_WIDTH / 5) / 2) + 5;
+	xinc = dx / (double)steps + 10;
+	yinc = dy / (double)steps + 10;
+	y = ray->cminiy;
+	x = ray->cminix;
 	k = 0;
 	while (k <= steps)
 	{
@@ -60,51 +60,39 @@ void	ray_cast(t_ray *ray, int columnId, double ra_angle)
 	int		rayfacingright = 0;
 	double	next_x;
 	double	next_y;
+	int		vertwallhit = 0;
+	// int		horzwallhit = 0;
+	double	vertwallhitx = 0;
+	double	vertwallhity = 0;
 
 	(void)columnId;
-	if (ra_angle > 0 && ra_angle < M_PI)
-		rayfacingdown = 1;
+	rayfacingdown = ra_angle > 0 && ra_angle < M_PI;
 	rayfacingup = !rayfacingdown;
-	if (ra_angle > M_PI_2 && ra_angle < 3 * M_PI_2)
-		rayfacingright = 1;
+	rayfacingright = ra_angle < 0.5 * M_PI || ra_angle > 1.5 * M_PI;
 	rayfacingleft = !rayfacingright;
-
-	ray->yinter = floor(ray->posy / 12) * 12;
-	if (rayfacingdown == 1)
-		ray->yinter += TILE_SIZE;
-	else
-		ray->yinter += 0;
+	ray->yinter = floor(ray->posy / TILE_SIZE) * TILE_SIZE;
+	ray->yinter += rayfacingdown ? TILE_SIZE : 0;
+	
 	ray->xinter = ray->posx + (ray->yinter - ray->posy) / tan(ra_angle);
-	ystep = TILE_SIZE;
-	if (rayfacingup == 1)
-		ystep *= -1;
-	else
-		ystep *= 1;
-	xstep = TILE_SIZE / tan(ra_angle);
-	if (rayfacingleft == 1 && xstep > 0)
-		xstep *= -1;
-	else
-		xstep *= 1;
-	if (rayfacingright == 1 && xstep < 0)
-		xstep *= -1;
-	else
-		xstep *= 1;
+	
+	xstep = TILE_SIZE;
+	xstep *= rayfacingleft ? -1 : 1;
+	
+	ystep = TILE_SIZE * tan(ra_angle);
+	ystep *= (rayfacingup && ystep > 0) ? -1 : 1;
+	ystep *= (rayfacingdown && ystep < 0) ? -1 : 1;
 	next_x = ray->xinter;
 	next_y = ray->yinter;
-	if (rayfacingup == 1)
-		next_y--;
-	int wallhit = 0;
-	int wallhitx = 0;
-	int wallhity = 0;
-	while (1)
+	if (rayfacingleft)
+		next_x--;
+	while (next_x >= 0 && next_x <= R_WIDTH && next_y >= 0 && next_y <= R_HEIGHT)
 	{
-		if (find_walls(ray, next_x, next_y))
+		if (find_walls(ray, next_x, next_y) == 1)
 		{
-			wallhit = 1;
-			wallhitx = next_x;
-			wallhity = next_y;
-			my_mlx_pixel_put(ray, wallhitx, wallhity, 0x0ff00);
-			break ;
+			vertwallhit = 1;
+			vertwallhitx = next_x;
+			vertwallhity = next_y;
+			break;
 		}
 		else
 		{
@@ -112,6 +100,7 @@ void	ray_cast(t_ray *ray, int columnId, double ra_angle)
 			next_y += ystep;
 		}
 	}
+	// my_mlx_pixel_put(ray, vertwallhitx, vertwallhity, 0x0fff0444);
 }
 
 void	put_rays(t_ray *ray, unsigned int color)
@@ -127,7 +116,7 @@ void	put_rays(t_ray *ray, unsigned int color)
 	{
 		ray->dirx = ray->posx + cos(ra_angle) * 30;
 		ray->diry = ray->posy + sin(ra_angle) * 30;
-		ray_cast(ray, columnid, ra_angle);
+		// ray_cast(ray, columnid, ra_angle);
 		dda_algorithm(ray, color);
 		ra_angle += ray->fov_angle / ray->num_rays;
 		i++;

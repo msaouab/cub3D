@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 09:34:00 by iqessam           #+#    #+#             */
-/*   Updated: 2022/09/24 19:32:16 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/26 10:17:45 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define R_HEIGHT 720
 # define WALL_STRIP 90
 # define TILE_SIZE 12
+# define TRANSPARENT 0x0ff000000
 
 // --------------Structs for parsing---------------------
 
@@ -87,6 +88,8 @@ typedef struct s_ray
 	double	rad;
 	double	fov_angle;
 	double	num_rays;
+	int		cminix;
+	int		cminiy;
 	t_cub	*cub;
 	t_move	move;
 }	t_ray;
