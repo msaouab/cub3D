@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 15:24:28 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/24 14:27:53 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/27 20:29:33 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	get_first_pos(t_ray *ray)
 		{
 			if (ray->cub->body[i][j] == ray->cub->type)
 			{
-				ray->posx = j * 12;
-				ray->posy = i * 12;
+				ray->posx = j * TILE_SIZE;
+				ray->posy = i * TILE_SIZE;
 			}
 			j++;
 		}
@@ -59,6 +59,13 @@ void	init_ray(t_ray *ray)
 	ray->rad = M_PI / 180;
 	ray->fov_angle = 60 * (ray->rad);
 	ray->num_rays = R_WIDTH / WALL_STRIP;
+	ray->cminix = ((R_WIDTH / 5) / 2) + 5;
+	ray->cminiy = ((R_HEIGHT / 5) / 2) + 5;
+	ray->wallhitx = 0;
+	ray->wallhity = 0;
+	ray->distance = 0;
+	ray->foundwallhitx = 0;
+	ray->foundwallhity = 0;
 	get_first_pos(ray);
 	get_first_angle(ray);
 }

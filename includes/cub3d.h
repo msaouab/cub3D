@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 09:34:00 by iqessam           #+#    #+#             */
-/*   Updated: 2022/09/24 11:15:49 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/27 20:18:30 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@
 
 # define R_WIDTH 1080
 # define R_HEIGHT 720
-# define WALL_STRIP 90
+# define WALL_STRIP 1
 # define TILE_SIZE 12
+# define TRANSPARENT 0x0ff000000
 
 // --------------Structs for parsing---------------------
 
@@ -87,6 +88,13 @@ typedef struct s_ray
 	double	rad;
 	double	fov_angle;
 	double	num_rays;
+	int		cminix;
+	int		cminiy;
+	double	wallhitx;
+	double	wallhity;
+	double	distance;
+	double	foundwallhitx;
+	double	foundwallhity;
 	t_cub	*cub;
 	t_move	move;
 }	t_ray;
@@ -128,5 +136,6 @@ void	put_minimap(t_ray *ray);
 void	dda_algorithm(t_ray *ray, int color);
 void	field_vue(t_ray *ray, unsigned int color);
 void	put_rays(t_ray *ray, unsigned int color);
+int		find_walls(t_ray *ray, int x, int y);
 
 #endif
