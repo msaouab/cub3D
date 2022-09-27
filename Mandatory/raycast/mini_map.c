@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 13:26:36 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/26 10:17:55 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/27 18:06:49 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	put_minimap(t_ray *ray)
 	i = -1;
 	x = (ray->posx + 5) - (R_WIDTH / 5 / 2 + 5);
 	y = (ray->posy + 5) - (R_HEIGHT / 5 / 2 + 5);
-	fill_minimap(ray, TRANSPARENT);
+	fill_minimap(ray, ray->cub->celling);
 	while (ray->cub->body[++i])
 	{
 		j = -1;

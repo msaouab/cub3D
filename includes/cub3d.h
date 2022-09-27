@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 09:34:00 by iqessam           #+#    #+#             */
-/*   Updated: 2022/09/26 10:17:45 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/27 20:18:30 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 # define R_WIDTH 1080
 # define R_HEIGHT 720
-# define WALL_STRIP 90
+# define WALL_STRIP 1
 # define TILE_SIZE 12
 # define TRANSPARENT 0x0ff000000
 
@@ -90,6 +90,11 @@ typedef struct s_ray
 	double	num_rays;
 	int		cminix;
 	int		cminiy;
+	double	wallhitx;
+	double	wallhity;
+	double	distance;
+	double	foundwallhitx;
+	double	foundwallhity;
 	t_cub	*cub;
 	t_move	move;
 }	t_ray;
