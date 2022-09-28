@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 09:34:00 by iqessam           #+#    #+#             */
-/*   Updated: 2022/09/27 20:18:30 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/28 10:17:55 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@
 # define WALL_STRIP 1
 # define TILE_SIZE 12
 # define TRANSPARENT 0x0ff000000
+# define MAX_VALUE 1.79E+308
+# define true 1
+# define false 0
 
 // --------------Structs for parsing---------------------
 
@@ -65,6 +68,14 @@ typedef struct s_move
 
 // --------------Structs for raycasting-----------------------
 
+typedef struct s_cast
+{
+	int	rayfacedown;
+	int	rayfaceup;
+	int	rayfaceleft;
+	int	rayfaceright;
+}	t_cast;
+
 typedef struct s_ray
 {
 	void	*mlx;
@@ -93,10 +104,13 @@ typedef struct s_ray
 	double	wallhitx;
 	double	wallhity;
 	double	distance;
-	double	foundwallhitx;
-	double	foundwallhity;
+	double	horzwallhitx;
+	double	horzwallhity;
+	double	vertwallhitx;
+	double	vertwallhity;
 	t_cub	*cub;
 	t_move	move;
+	t_cast	cast;
 }	t_ray;
 
 // ----------------Utils_functions----------------------------
@@ -133,7 +147,7 @@ void	xpmfile(t_ray *ray);
 void	my_mlx_pixel_put(t_ray *ray, int x, int y, unsigned int color);
 void	init_ray(t_ray *ray);
 void	put_minimap(t_ray *ray);
-void	dda_algorithm(t_ray *ray, int color);
+// void	dda_algorithm(t_ray *ray, int color);
 void	field_vue(t_ray *ray, unsigned int color);
 void	put_rays(t_ray *ray, unsigned int color);
 int		find_walls(t_ray *ray, int x, int y);

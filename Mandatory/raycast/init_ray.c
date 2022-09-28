@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 15:24:28 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/27 20:29:33 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/28 09:41:39 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,10 @@ void	init_ray(t_ray *ray)
 	ray->wallhitx = 0;
 	ray->wallhity = 0;
 	ray->distance = 0;
-	ray->foundwallhitx = 0;
-	ray->foundwallhity = 0;
+	ray->horzwallhitx = 0;
+	ray->horzwallhity = 0;
+	ray->vertwallhitx = 0;
+	ray->vertwallhity = 0;
 	get_first_pos(ray);
 	get_first_angle(ray);
 }
