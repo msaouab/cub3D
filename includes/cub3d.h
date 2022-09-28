@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 09:34:00 by iqessam           #+#    #+#             */
-/*   Updated: 2022/09/28 10:17:55 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/28 20:26:30 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@
 # define WALL_STRIP 1
 # define TILE_SIZE 12
 # define TRANSPARENT 0x0ff000000
-# define MAX_VALUE 1.79E+308
-# define true 1
-# define false 0
+# define MAX_VALUE 1e30
+# define TRUE 1
+# define FALSE 0
 
 // --------------Structs for parsing---------------------
 
@@ -70,10 +70,12 @@ typedef struct s_move
 
 typedef struct s_cast
 {
-	int	rayfacedown;
-	int	rayfaceup;
-	int	rayfaceleft;
-	int	rayfaceright;
+	int		rayfacedown;
+	int		rayfaceup;
+	int		rayfaceleft;
+	int		rayfaceright;
+	int		washitvert;
+	double	disctance;
 }	t_cast;
 
 typedef struct s_ray
@@ -88,6 +90,7 @@ typedef struct s_ray
 	double	posx;
 	double	posy;
 	double	ra;
+	double	ra_angle;
 	int		minix;
 	int		miniy;
 	int		w_minimap;
@@ -151,5 +154,7 @@ void	put_minimap(t_ray *ray);
 void	field_vue(t_ray *ray, unsigned int color);
 void	put_rays(t_ray *ray, unsigned int color);
 int		find_walls(t_ray *ray, int x, int y);
+void	put_3drender(t_ray *ray);
+void	projection_walls3d(t_ray *ray, int i);
 
 #endif

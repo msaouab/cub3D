@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 08:44:28 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/22 20:46:49 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/28 16:28:13 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	raycast(t_ray *ray)
 	ray->mlx = mlx_init();
 	xpmfile(ray);
 	ray->win = mlx_new_window(ray->mlx, R_WIDTH, R_HEIGHT, "CUB3D");
+	put_3drender(ray);
 	put_minimap(ray);
 	my_mlx_button(ray);
 	mlx_loop(ray->mlx);

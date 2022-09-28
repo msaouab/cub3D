@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 19:28:31 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/28 11:33:38 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/28 20:44:40 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	dda_algorithm(t_ray *ray, int color, double x1, double y1)
 	double	x;
 	double	y;
 
-	dx = x1 - ray->posx;
-	dy = y1 - ray->posy;
+	dx = (x1 + 6)- ray->posx;
+	dy = (y1 + 6)- ray->posy;
 	if (abs(dx) > abs(dy))
 		steps = abs(dx);
 	else
@@ -48,26 +48,32 @@ double	distanceBetweenPoints(double x1, double y1, double x2, double y2)
 	return (sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
 }
 
-void	facing_ray(t_ray *ray, double ra_angle)
+void	facing_ray(t_ray *ray)
 {
-	ray->cast.rayfacedown = false;
-	ray->cast.rayfaceup = false;
-	ray->cast.rayfaceleft = false;
-	ray->cast.rayfaceright = false;
+	ray->cast.rayfacedown = FALSE;
+	ray->cast.rayfaceup = FALSE;
+	ray->cast.rayfaceleft = FALSE;
+	ray->cast.rayfaceright = FALSE;
 
-	if (ra_angle > 0 && ra_angle < M_PI)
-		ray->cast.rayfacedown = true;
+	if (ray->ra_angle > 0 && ray->ra_angle < M_PI)
+		ray->cast.rayfacedown = TRUE;
 	ray->cast.rayfaceup = !ray->cast.rayfacedown;
-	if (ra_angle < 0.5 * M_PI || ra_angle > 1.5 * M_PI)
-		ray->cast.rayfaceright = true;
+	if (ray->ra_angle < 0.5 * M_PI || ray->ra_angle > 1.5 * M_PI)
+		ray->cast.rayfaceright = TRUE;
 	ray->cast.rayfaceleft = !ray->cast.rayfaceright;
-	// ray->cast.rayfacedown = ra_angle > 0 && ra_angle < M_PI;
-	// ray->cast.rayfaceup = !ray->cast.rayfacedown;
-	// ray->cast.rayfaceright = ra_angle < 0.5 * M_PI || ra_angle > 1.5 * M_PI;
-	// ray->cast.rayfaceleft = !ray->cast.rayfaceright;
 }
 
-void	castray(t_ray *ray, double ra_angle)
+double	normalize(t_ray *ray)
+{
+	ray->ra_angle = fmod(ray->ra_angle, (2 * M_PI));
+	if (ray->ra_angle <= 0)
+		ray->ra_angle += (2 * M_PI);
+	if (ray->ra_angle >= 2 * M_PI)
+		ray->ra_angle -= (2 * M_PI);
+	return (ray->ra_angle);
+}
+
+void	castray(t_ray *ray)
 {
 	double	xinter;
 	double	yinter;
@@ -76,15 +82,16 @@ void	castray(t_ray *ray, double ra_angle)
 	int		foundhorzwallhit = 0;
 	int		foundvertwallhit = 0;
 
-	facing_ray(ray, ra_angle);
+	normalize(ray);
+	facing_ray(ray);
 	yinter = floor(ray->posy / TILE_SIZE) * TILE_SIZE;
 	if (ray->cast.rayfacedown)
 		yinter += TILE_SIZE;
-	xinter = ray->posx + (yinter - ray->posy) / tan(ra_angle);
+	xinter = ray->posx + (yinter - ray->posy) / tan(ray->ra_angle);
 	ystep = TILE_SIZE;
 	if (ray->cast.rayfaceup)
 		ystep *= -1;
-	xstep = TILE_SIZE / tan(ra_angle);
+	xstep = TILE_SIZE / tan(ray->ra_angle);
 	if (ray->cast.rayfaceleft && xstep > 0)
 		xstep *= -1;
 	if (ray->cast.rayfaceright && xstep < 0)
@@ -97,10 +104,10 @@ void	castray(t_ray *ray, double ra_angle)
 	{
 		if (find_walls(ray, nexthorzX + 6, nexthorzY + 6) == 0)
 		{
-			foundhorzwallhit = 1;
+			foundhorzwallhit = TRUE;
 			ray->horzwallhitx = nexthorzX;
 			ray->horzwallhity = nexthorzY;
-			break;
+			break ;
 		}
 		else 
 		{
@@ -112,11 +119,11 @@ void	castray(t_ray *ray, double ra_angle)
 	xinter = floor(ray->posx / TILE_SIZE) * TILE_SIZE;
 	if (ray->cast.rayfaceright)
 		xinter += TILE_SIZE;
-	yinter = ray->posy + (xinter - ray->posx) * tan(ra_angle);
+	yinter = ray->posy + (xinter - ray->posx) * tan(ray->ra_angle);
 	xstep = TILE_SIZE;
 	if (ray->cast.rayfaceleft)
 		xstep *= -1;
-	ystep = TILE_SIZE * tan(ra_angle);
+	ystep = TILE_SIZE * tan(ray->ra_angle);
 	if (ray->cast.rayfaceup && ystep > 0)
 		ystep *= -1;
 	if (ray->cast.rayfacedown && ystep < 0)
@@ -129,48 +136,59 @@ void	castray(t_ray *ray, double ra_angle)
 	{
 		if (find_walls(ray, nextvertX + 6, nextvertY + 6) == 0)
 		{
-			foundvertwallhit = 1;
+			foundvertwallhit = TRUE;
 			ray->vertwallhitx = nextvertX;
 			ray->vertwallhity = nextvertY;
-			break;
+			break ;
 		}
-		else 
+		else
 		{
 			nextvertX += xstep;
 			nextvertY += ystep;
 		}
 	}
-	double	horzhitdist = (foundhorzwallhit == 1) \
+	double	horzhitdist = (foundhorzwallhit) \
 		? distanceBetweenPoints(ray->posx, ray->posy, ray->horzwallhitx, ray->horzwallhity)
 		: MAX_VALUE;
-	double	verthitdist = (foundvertwallhit == 1) \
+	double	verthitdist = (foundvertwallhit) \
 		? distanceBetweenPoints(ray->posx, ray->posy, ray->vertwallhitx, ray->vertwallhity)
 		: MAX_VALUE;
 
-	double	wallhitx = (horzhitdist < verthitdist) ? ray->horzwallhitx : ray->vertwallhitx;
-	double	wallhity = (horzhitdist < verthitdist) ? ray->horzwallhity : ray->vertwallhity;
-	// double	disctance = (horzhitdist < verthitdist) ? horzhitdist : verthitdist;
-	// double	washitvert = (verthitdist < horzhitdist);;
+	double	wallhitx;
+	double	wallhity;
+	if (verthitdist < horzhitdist)
+	{
+		wallhitx = ray->vertwallhitx;
+		wallhity = ray->vertwallhity;
+	}
+	else
+	{
+		wallhitx = ray->horzwallhitx;
+		wallhity = ray->horzwallhity;
+	}
+	// printf("%f\t||%f\n", wallhitx, wallhity);
+	wallhitx = (horzhitdist < verthitdist) ? ray->horzwallhitx : ray->vertwallhitx;
+	wallhity = (horzhitdist < verthitdist) ? ray->horzwallhity : ray->vertwallhity;
+	ray->cast.disctance = (horzhitdist < verthitdist) ? horzhitdist : verthitdist;
+	ray->cast.washitvert = (verthitdist < horzhitdist);
 	dda_algorithm(ray, 0x0fff000, wallhitx, wallhity);
 }
 
-		// ray->dirx = ray->posx + cos(ra_angle) * 30;
-		// ray->diry = ray->posy + sin(ra_angle) * 30;
-
 void	put_rays(t_ray *ray, unsigned int color)
 {
-	double	ra_angle;
 	int		i;
 
 	(void)color;
 	i = 0;
-	ra_angle = ray->ra - (ray->fov_angle / 2);
-	printf("%f\t||%f\n", ra_angle, ray->ra);
+	ray->ra_angle = ray->ra - (ray->fov_angle / 2);
+	// normalize(ray);
 	while (i < ray->num_rays)
 	{
-		castray(ray, ra_angle);
+		castray(ray);
 		// dda_algorithm(ray, 0x0fff000);
-		ra_angle += ray->fov_angle / ray->num_rays;
+		projection_walls3d(ray, i);
+		ray->ra_angle += ray->fov_angle / ray->num_rays;
+		// normalize(ray);
 		i++;
 	}
 }
