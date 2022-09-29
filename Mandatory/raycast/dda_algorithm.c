@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 19:28:31 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/28 20:44:40 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/29 12:43:20 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	dda_algorithm(t_ray *ray, int color, double x1, double y1)
 	double	x;
 	double	y;
 
-	dx = (x1 + 6)- ray->posx;
-	dy = (y1 + 6)- ray->posy;
+	dx = (x1 + 6) - ray->posx; // adding 6 may change the ray direction in extreme cases {old x1 + 6}
+	dy = (y1 + 6) - ray->posy; // adding 6 may change the ray direction in extreme cases {old y1 + 6}
 	if (abs(dx) > abs(dy))
 		steps = abs(dx);
 	else
@@ -68,8 +68,8 @@ double	normalize(t_ray *ray)
 	ray->ra_angle = fmod(ray->ra_angle, (2 * M_PI));
 	if (ray->ra_angle <= 0)
 		ray->ra_angle += (2 * M_PI);
-	if (ray->ra_angle >= 2 * M_PI)
-		ray->ra_angle -= (2 * M_PI);
+	// if (ray->ra_angle >= 2 * M_PI)
+	// 	ray->ra_angle -= (2 * M_PI);
 	return (ray->ra_angle);
 }
 
@@ -82,7 +82,7 @@ void	castray(t_ray *ray)
 	int		foundhorzwallhit = 0;
 	int		foundvertwallhit = 0;
 
-	normalize(ray);
+	// normalize(ray);
 	facing_ray(ray);
 	yinter = floor(ray->posy / TILE_SIZE) * TILE_SIZE;
 	if (ray->cast.rayfacedown)
@@ -179,16 +179,20 @@ void	put_rays(t_ray *ray, unsigned int color)
 	int		i;
 
 	(void)color;
-	i = 0;
-	ray->ra_angle = ray->ra - (ray->fov_angle / 2);
+	i = 1080 / 2;
+	ray->ra_angle = ray->ra;// - (ray->fov_angle / 2);
+	// printf("%f\n", (ray->ra_angle / ray->rad));
+	// ray->ra_angle = ray->ra;
 	// normalize(ray);
-	while (i < ray->num_rays)
-	{
+	// while (i < 1)
+	// {
+		ray->dirx = ray->posx + cos(ray->ra_angle) * 30;
+		ray->diry = ray->posy + sin(ray->ra_angle) * 30;
 		castray(ray);
 		// dda_algorithm(ray, 0x0fff000);
-		projection_walls3d(ray, i);
-		ray->ra_angle += ray->fov_angle / ray->num_rays;
-		// normalize(ray);
-		i++;
-	}
+		// projection_walls3d(ray, i);
+	// 	ray->ra_angle += ray->fov_angle / ray->num_rays;
+	// 	// normalize(ray);
+	// 	i++;
+	// }
 }

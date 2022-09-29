@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 15:24:28 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/28 09:41:39 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/29 11:31:09 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	get_first_angle(t_ray *ray)
 	if (ray->cub->type == 'W')
 		ray->ra = M_PI;
 	if (ray->cub->type == 'E')
-		ray->ra = 0;
+		ray->ra = 2 * M_PI;
 }
 
 void	get_first_pos(t_ray *ray)

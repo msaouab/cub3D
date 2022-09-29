@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 13:02:37 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/28 11:32:27 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/29 12:34:14 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int	find_walls(t_ray *ray, int x, int y)
 	int	i;
 	int	j;
 
-	i = floor((y + 6) / TILE_SIZE);
-	j = floor((x + 6) / TILE_SIZE);
+	i = floor((y) / TILE_SIZE);
+	j = floor((x) / TILE_SIZE);
 	if (ray->cub->body[i][j] == '1')
 		return (0);
 	return (1);
