@@ -6,7 +6,7 @@
 /*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 13:02:37 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/29 14:47:10 by iqessam          ###   ########.fr       */
+/*   Updated: 2022/09/29 16:23:01 by iqessam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	find_walls(t_ray *ray, int x, int y)
 
 	i = floor(y / TILE_SIZE);
 	j = floor(x / TILE_SIZE);
-	if (ray->cub->body[i][j] == '1')
+	if (ray->cub->body[i][j] == '1' || ray->cub->body[i][j] == 0 || ray->cub->body[i][j] == ' ')
 		return (0);
 	return (1);
 }
