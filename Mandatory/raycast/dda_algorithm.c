@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda_algorithm.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 19:28:31 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/29 12:43:20 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/29 15:17:20 by iqessam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	dda_algorithm(t_ray *ray, int color, double x1, double y1)
 	double	x;
 	double	y;
 
-	dx = (x1 + 6) - ray->posx; // adding 6 may change the ray direction in extreme cases {old x1 + 6}
-	dy = (y1 + 6) - ray->posy; // adding 6 may change the ray direction in extreme cases {old y1 + 6}
+	dx = x1 - ray->posx; // adding 6 may change the ray direction in extreme cases {old x1 + 6}
+	dy = y1 - ray->posy; // adding 6 may change the ray direction in extreme cases {old y1 + 6}
 	if (abs(dx) > abs(dy))
 		steps = abs(dx);
 	else
@@ -34,7 +34,7 @@ void	dda_algorithm(t_ray *ray, int color, double x1, double y1)
 	y = ray->cminiy;
 	x = ray->cminix;
 	k = 0;
-	while (k <= steps)
+	while (k <= steps && y >= 0 && y < R_HEIGHT / 5 && x >= 0 && x < R_WIDTH / 5)
 	{
 		my_mlx_pixel_put(ray, round(x), round(y), color);
 		y += yinc;
@@ -98,11 +98,16 @@ void	castray(t_ray *ray)
 		xstep *= -1;
 	double	nexthorzX = xinter;
 	double	nexthorzY = yinter;
+	ray->horzwallhitx = nexthorzX;
+	ray->horzwallhity = nexthorzY;
 	if (ray->cast.rayfaceup)
 		nexthorzY--;
-	while (nexthorzX >= 0 && nexthorzX <= R_WIDTH / 5 && nexthorzY >= 0 && nexthorzY <= R_HEIGHT / 5)
+	while ((int)(nexthorzY / TILE_SIZE) >= 0
+		&& (int)(nexthorzY / TILE_SIZE) < ray->cub->ac
+		&& (int)(nexthorzX / TILE_SIZE) >= 0
+		&& (int)(nexthorzX / TILE_SIZE) < (int)ft_strlen(ray->cub->body[(int)(nexthorzY / TILE_SIZE)]) * TILE_SIZE)//modified : R_WIDTH / 5 AND R_HEIGHT / 5 to explain later 
 	{
-		if (find_walls(ray, nexthorzX + 6, nexthorzY + 6) == 0)
+		if (find_walls(ray, nexthorzX, nexthorzY) == 0)
 		{
 			foundhorzwallhit = TRUE;
 			ray->horzwallhitx = nexthorzX;
@@ -130,11 +135,16 @@ void	castray(t_ray *ray)
 		ystep *= -1;
 	double	nextvertX = xinter;
 	double	nextvertY = yinter;
+	ray->vertwallhitx = nextvertX;
+	ray->vertwallhity = nextvertY;
 	if (ray->cast.rayfaceleft)
 		nextvertX--;
-	while (nextvertX >= 0 && nextvertX <= R_WIDTH / 5 && nextvertY >= 0 && nextvertY <= R_HEIGHT / 5)
+	while ((int)(nextvertY / TILE_SIZE) >= 0
+		&& (int)(nextvertY / TILE_SIZE) < ray->cub->ac
+		&& (int)(nextvertX / TILE_SIZE) >= 0
+		&& (int)(nextvertX / TILE_SIZE) < (int)ft_strlen(ray->cub->body[(int)(nextvertY / TILE_SIZE)]) * TILE_SIZE)
 	{
-		if (find_walls(ray, nextvertX + 6, nextvertY + 6) == 0)
+		if (find_walls(ray, nextvertX, nextvertY) == 0)
 		{
 			foundvertwallhit = TRUE;
 			ray->vertwallhitx = nextvertX;
@@ -179,20 +189,20 @@ void	put_rays(t_ray *ray, unsigned int color)
 	int		i;
 
 	(void)color;
-	i = 1080 / 2;
-	ray->ra_angle = ray->ra;// - (ray->fov_angle / 2);
+	i = 0;
+	ray->ra_angle = ray->ra - (ray->fov_angle / 2);
 	// printf("%f\n", (ray->ra_angle / ray->rad));
 	// ray->ra_angle = ray->ra;
 	// normalize(ray);
-	// while (i < 1)
-	// {
-		ray->dirx = ray->posx + cos(ray->ra_angle) * 30;
-		ray->diry = ray->posy + sin(ray->ra_angle) * 30;
+	while (i < ray->num_rays)
+	{
+		// ray->dirx = ray->posx + cos(ray->ra_angle) * TILE_SIZE;
+		// ray->diry = ray->posy + sin(ray->ra_angle) * TILE_SIZE;
 		castray(ray);
 		// dda_algorithm(ray, 0x0fff000);
 		// projection_walls3d(ray, i);
-	// 	ray->ra_angle += ray->fov_angle / ray->num_rays;
-	// 	// normalize(ray);
-	// 	i++;
-	// }
+		ray->ra_angle += ray->fov_angle / ray->num_rays;
+		normalize(ray);
+		i++;
+	}
 }

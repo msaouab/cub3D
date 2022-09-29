@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_ray.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 15:24:28 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/29 11:31:09 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/29 14:13:14 by iqessam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	get_first_pos(t_ray *ray)
 		{
 			if (ray->cub->body[i][j] == ray->cub->type)
 			{
-				ray->posx = j * TILE_SIZE;
-				ray->posy = i * TILE_SIZE;
+				ray->posx = j * TILE_SIZE + 6;
+				ray->posy = i * TILE_SIZE + 6;
 			}
 			j++;
 		}
@@ -59,8 +59,8 @@ void	init_ray(t_ray *ray)
 	ray->rad = M_PI / 180;
 	ray->fov_angle = 60 * (ray->rad);
 	ray->num_rays = R_WIDTH / WALL_STRIP;
-	ray->cminix = ((R_WIDTH / 5) / 2) + 5;
-	ray->cminiy = ((R_HEIGHT / 5) / 2) + 5;
+	ray->cminix = ((R_WIDTH / 5) / 2);
+	ray->cminiy = ((R_HEIGHT / 5) / 2);
 	ray->wallhitx = 0;
 	ray->wallhity = 0;
 	ray->distance = 0;
