@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 13:26:36 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/28 16:36:45 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/29 15:02:47 by iqessam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ void	put_minimap_windows(t_ray *ray, int pix, unsigned int color)
 	int	i;
 	int	j;
 
-	i = ray->miniy;
+	i = ray->miniy + 1;
 	while (i < ray->miniy + pix)
 	{
-		j = ray->minix;
+		j = ray->minix + 1;
 		while (j < ray->minix + pix)
 		{
 			if (i >= 0 && i < (R_HEIGHT / 5) && j >= 0 && j < (R_WIDTH / 5))
@@ -76,8 +76,8 @@ void	put_minimap(t_ray *ray)
 	int	y;
 
 	i = -1;
-	x = (ray->posx + 5) - (R_WIDTH / 5 / 2 + 5);
-	y = (ray->posy + 5) - (R_HEIGHT / 5 / 2 + 5);
+	x = (ray->posx) - (R_WIDTH / 5 / 2);
+	y = (ray->posy) - (R_HEIGHT / 5 / 2);
 	fill_minimap(ray, ray->cub->celling);
 	while (ray->cub->body[++i])
 	{
