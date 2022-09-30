@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   walls_projection.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:52:23 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/28 20:45:52 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/30 12:36:49 by iqessam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	projection_walls3d(t_ray *ray, int y)
 	while (i < bottom_pixel)
 	{
 		j = 0;
-		while(j < R_WIDTH)
+		while(j < WALL_STRIP)
 		{
 			if (ray->cast.washitvert)
 				my_mlx_pixel_put(ray, j, i, 0x0ffeeee);

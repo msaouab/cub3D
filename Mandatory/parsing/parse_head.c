@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_head.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 15:24:57 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/23 12:07:10 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/30 12:08:48 by iqessam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,58 @@
 void	rgb_to_hex(t_cub *cub, char *tmp, char c)
 {
 	int	i;
+	int j;
+	char **decimal;
+	unsigned int color;
 
-	i = 0;
-	while (tmp[i])
+	i = -1;
+	color = 0;
+	j = 256 * 256;     
+	decimal = ft_split(tmp, ',');
+	while (++i < 3)
 	{
-		if (tmp[i] == ',')
-			i++;
-		if (c == 'C')
-		{
-			cub->celling *= 10;
-			cub->celling += tmp[i] - '0';
-		}
-		if (c == 'F')
-		{
-			cub->floor *= 10;
-			cub->floor += tmp[i] - '0';
-		}
-		i++;
-	}
+		if (i == 0)
+			color += ft_atoi(decimal[i]) * j;
+		if (i == 1)
+			color += ft_atoi(decimal[i]) * 256;
+		if (i == 2)
+			color += ft_atoi(decimal[i]);
+	}	
 	if (c == 'C')
-		cub->rgb_c += 1;
+	{
+		cub->celling = color;
+			cub->rgb_c += 1;
+	}	
 	if (c == 'F')
+	{
+		cub->floor = color;
 		cub->rgb_f += 1;
-	cub->celling *= 25.69919741;
-	cub->floor *= 25.69919741;
+	}
+
+	// puts(tmp);
+	
+	// while (tmp[i])
+	// {
+	// 	if (tmp[i] == ',')
+	// 		i++;
+	// 	if (c == 'C')
+	// 	{
+	// 		cub->celling *= 10;
+	// 		cub->celling += tmp[i] - '0';
+	// 	}
+	// 	if (c == 'F')
+	// 	{
+	// 		cub->floor *= 10;
+	// 		cub->floor += tmp[i] - '0';
+	// 	}
+	// 	i++;
+	// }
+	// if (c == 'C')
+	// 	cub->rgb_c += 1;
+	// if (c == 'F')
+	// 	cub->rgb_f += 1;
+	// cub->celling *= 25.69919741;
+	// cub->floor *= 25.69919741;
 }
 
 void	head_texture(t_cub *cub, char c)

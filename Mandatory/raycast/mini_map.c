@@ -6,7 +6,7 @@
 /*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 13:26:36 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/29 15:02:47 by iqessam          ###   ########.fr       */
+/*   Updated: 2022/09/30 10:34:20 by iqessam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	put_minimap(t_ray *ray)
 			ray->cub->body[i][j] == ray->cub->type)
 				put_minimap_windows(ray, TILE_SIZE, ray->cub->celling);
 			if (ray->cub->body[i][j] == '1')
-				put_minimap_windows(ray, TILE_SIZE - 2, ray->cub->floor);
+				put_minimap_windows(ray, TILE_SIZE - 2, 0xffffff);
 		}
 	}
 	my_mlx_pixel_put(ray, ray->cminix, ray->cminiy, 0xfff000);
