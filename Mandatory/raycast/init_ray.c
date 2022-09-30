@@ -6,7 +6,7 @@
 /*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 15:24:28 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/29 14:13:14 by iqessam          ###   ########.fr       */
+/*   Updated: 2022/09/30 18:17:21 by iqessam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ void	init_ray(t_ray *ray)
 	ray->horzwallhity = 0;
 	ray->vertwallhitx = 0;
 	ray->vertwallhity = 0;
+	ray->ray_id = 0;
+	color_buffer(ray);
 	get_first_pos(ray);
 	get_first_angle(ray);
 }

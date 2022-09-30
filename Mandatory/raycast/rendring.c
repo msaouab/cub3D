@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendring.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:28:32 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/28 16:34:45 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/09/30 19:14:37 by iqessam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,11 @@
 void	put_celling(t_ray *ray)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	while (i < R_HEIGHT / 2)
+	while (i < ray->top_pixel)
 	{
-		j = 0;
-		while (j < R_WIDTH)
-		{
-			my_mlx_pixel_put(ray, j, i, ray->cub->celling);
-			j++;
-		}
+			my_mlx_pixel_put(ray, ,i,  ray->cub->celling);
 		i++;
 	}
 }
@@ -33,23 +27,18 @@ void	put_celling(t_ray *ray)
 void	put_floor(t_ray *ray)
 {
 	int	i;
-	int	j;
 
-	i = R_HEIGHT / 2;
+	i = ray->bottom_pixel;
 	while (i < R_HEIGHT)
 	{
-		j = 0;
-		while (j < R_WIDTH)
-		{
-			my_mlx_pixel_put(ray, j, i, ray->cub->floor);
-			j++;
-		}
+			my_mlx_pixel_put(ray, i, , ray->cub->floor);
 		i++;
 	}
 }
 
 void	put_3drender(t_ray *ray)
 {
+	projection_walls3d(ray);
 	put_celling(ray);
 	put_floor(ray);
 }

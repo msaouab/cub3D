@@ -6,7 +6,7 @@
 /*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 09:34:00 by iqessam           #+#    #+#             */
-/*   Updated: 2022/09/30 12:33:02 by iqessam          ###   ########.fr       */
+/*   Updated: 2022/09/30 18:56:20 by iqessam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,10 @@ typedef struct s_ray
 	double	horzwallhity;
 	double	vertwallhitx;
 	double	vertwallhity;
+	unsigned int *pixel_color;
+	int		ray_id;
+	int 	top_pixel;
+	int 	bottom_pixel;
 	t_cub	*cub;
 	t_move	move;
 	t_cast	cast;
@@ -156,6 +160,7 @@ void	field_vue(t_ray *ray, unsigned int color);
 void	put_rays(t_ray *ray, unsigned int color);
 int		find_walls(t_ray *ray, int x, int y);
 void	put_3drender(t_ray *ray);
-void	projection_walls3d(t_ray *ray, int i);
+void	projection_walls3d(t_ray *ray);
+void 	color_buffer(t_ray *ray);
 
 #endif

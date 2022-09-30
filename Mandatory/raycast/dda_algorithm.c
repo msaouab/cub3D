@@ -6,7 +6,7 @@
 /*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 19:28:31 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/30 14:07:49 by iqessam          ###   ########.fr       */
+/*   Updated: 2022/09/30 18:49:10 by iqessam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,10 +199,11 @@ void	put_rays(t_ray *ray, unsigned int color)
 		// ray->dirx = ray->posx + cos(ray->ra_angle) * TILE_SIZE;
 		// ray->diry = ray->posy + sin(ray->ra_angle) * TILE_SIZE;
 		castray(ray);
-		// dda_algorithm(ray, 0x0fff000);
-		// projection_walls3d(ray, i);
+		ray->ray_id = i;
+		put_3drender(ray);
 		ray->ra_angle += ray->fov_angle / ray->num_rays;
 		normalize(ray);
 		i++;
 	}
+	mlx_clear_window(ray->mlx, ray->win);
 }
