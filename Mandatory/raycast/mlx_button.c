@@ -6,7 +6,7 @@
 /*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 09:58:20 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/30 18:44:50 by iqessam          ###   ########.fr       */
+/*   Updated: 2022/10/01 13:32:46 by iqessam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	ft_frame(t_ray *ray)
 		cam_right(ray);
 	mlx_clear_window(ray->mlx, ray->win);
 	put_minimap(ray);
-	projection_walls3d(ray);
+	// projection_walls3d(ray);
 	mlx_put_image_to_window(ray->mlx, ray->win, ray->img, 0, 0);
 	return (0);
 }

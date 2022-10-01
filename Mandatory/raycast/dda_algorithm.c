@@ -6,7 +6,7 @@
 /*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 19:28:31 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/30 18:49:10 by iqessam          ###   ########.fr       */
+/*   Updated: 2022/10/01 13:39:43 by iqessam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	castray(t_ray *ray)
 	ray->horzwallhitx = nexthorzX;
 	ray->horzwallhity = nexthorzY;
 	if (ray->cast.rayfaceup)
-		nexthorzY--;
+		nexthorzY -= 0.000001;
 	while ((int)(nexthorzY / TILE_SIZE) >= 0
 		&& (int)(nexthorzY / TILE_SIZE) < ray->cub->ac
 		&& (int)(nexthorzX / TILE_SIZE) >= 0
@@ -138,7 +138,7 @@ void	castray(t_ray *ray)
 	ray->vertwallhitx = nextvertX;
 	ray->vertwallhity = nextvertY;
 	if (ray->cast.rayfaceleft)
-		nextvertX--;
+		nextvertX -= 0.000001;
 	while ((int)(nextvertY / TILE_SIZE) >= 0
 		&& (int)(nextvertY / TILE_SIZE) < ray->cub->ac
 		&& (int)(nextvertX / TILE_SIZE) >= 0

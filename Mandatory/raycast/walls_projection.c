@@ -6,7 +6,7 @@
 /*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:52:23 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/30 18:56:51 by iqessam          ###   ########.fr       */
+/*   Updated: 2022/10/01 13:31:05 by iqessam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,26 +36,28 @@ void color_buffer(t_ray *ray)
 void	projection_walls3d(t_ray *ray)
 {
 	int		i;
-	int		wallstrip_height;
+	double	wallstrip_height;
 	double	distprojectplane;
 	double	perpdist;
 
 	perpdist = ray->cast.disctance * cos(ray->ra_angle - ray->ra);
-	distprojectplane = (R_WIDTH / 2) / tan(ray->fov_angle / 2);
+	distprojectplane = (R_WIDTH / 2.0) / tan(ray->fov_angle / 2.0);
 	wallstrip_height = (TILE_SIZE / perpdist) * distprojectplane;
-	ray->top_pixel = (R_HEIGHT / 2) - (wallstrip_height / 2);
+	ray->top_pixel = (R_HEIGHT / 2.0) - (wallstrip_height / 2.0);
 	if (ray->top_pixel < 0)
 		ray->top_pixel = 0;
-	ray->bottom_pixel = (R_HEIGHT / 2) + (wallstrip_height / 2);
+	ray->bottom_pixel = (R_HEIGHT / 2.0) + (wallstrip_height / 2.0);
 	if (ray->bottom_pixel > R_HEIGHT)
 		ray->bottom_pixel = R_HEIGHT;
 	i = ray->top_pixel;
+	put_celling(ray);
+	put_floor(ray);
 	while (i < ray->bottom_pixel)
 	{
 		if (ray->cast.washitvert)
 			my_mlx_pixel_put(ray, ray->ray_id, i, 5161616);
 		else
-			my_mlx_pixel_put(ray, ray->ray_id,i, 65165456);	
+			my_mlx_pixel_put(ray, ray->ray_id, i, 65165456);
 		i++;
 	}
 }
