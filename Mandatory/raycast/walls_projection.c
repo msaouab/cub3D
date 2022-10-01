@@ -6,44 +6,58 @@
 /*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:52:23 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/30 12:36:49 by iqessam          ###   ########.fr       */
+/*   Updated: 2022/10/01 13:31:05 by iqessam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	projection_walls3d(t_ray *ray, int y)
+void color_buffer(t_ray *ray)
 {
-	(void)y;
+	int x;
+	int y;
+	
+	x = 0;
+	ray->pixel_color = (unsigned int *)malloc(sizeof(unsigned int) * (unsigned int)R_WIDTH *
+	 (unsigned int)R_HEIGHT);
+	while (x < R_WIDTH)
+	{
+		y = 0;
+		while (y < R_HEIGHT)
+		{
+			ray->pixel_color[(R_WIDTH * y) + x] = 0xFF000000;
+			y++;
+		}
+		x++;
+	}
+}
+
+
+void	projection_walls3d(t_ray *ray)
+{
 	int		i;
-	int		j;
-	int		top_pixel;
-	int		bottom_pixel;
-	int		wallstrip_height;
+	double	wallstrip_height;
 	double	distprojectplane;
 	double	perpdist;
 
 	perpdist = ray->cast.disctance * cos(ray->ra_angle - ray->ra);
-	distprojectplane = (R_WIDTH / 2) / tan(ray->fov_angle / 2);
+	distprojectplane = (R_WIDTH / 2.0) / tan(ray->fov_angle / 2.0);
 	wallstrip_height = (TILE_SIZE / perpdist) * distprojectplane;
-	top_pixel = (R_HEIGHT / 2) - (wallstrip_height / 2);
-	if (top_pixel < 0)
-		top_pixel = 0;
-	bottom_pixel = (R_HEIGHT / 2) + (wallstrip_height / 2);
-	if (bottom_pixel > R_HEIGHT)
-		bottom_pixel = R_HEIGHT;
-	i = top_pixel;
-	while (i < bottom_pixel)
+	ray->top_pixel = (R_HEIGHT / 2.0) - (wallstrip_height / 2.0);
+	if (ray->top_pixel < 0)
+		ray->top_pixel = 0;
+	ray->bottom_pixel = (R_HEIGHT / 2.0) + (wallstrip_height / 2.0);
+	if (ray->bottom_pixel > R_HEIGHT)
+		ray->bottom_pixel = R_HEIGHT;
+	i = ray->top_pixel;
+	put_celling(ray);
+	put_floor(ray);
+	while (i < ray->bottom_pixel)
 	{
-		j = 0;
-		while(j < WALL_STRIP)
-		{
-			if (ray->cast.washitvert)
-				my_mlx_pixel_put(ray, j, i, 0x0ffeeee);
-			else
-				my_mlx_pixel_put(ray, j, i, 0x0AAAAA);
-			j++;	
-		}
+		if (ray->cast.washitvert)
+			my_mlx_pixel_put(ray, ray->ray_id, i, 5161616);
+		else
+			my_mlx_pixel_put(ray, ray->ray_id, i, 65165456);
 		i++;
 	}
 }

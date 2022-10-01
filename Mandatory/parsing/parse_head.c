@@ -6,13 +6,13 @@
 /*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 15:24:57 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/30 12:08:48 by iqessam          ###   ########.fr       */
+/*   Updated: 2022/09/30 16:22:42 by iqessam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	rgb_to_hex(t_cub *cub, char *tmp, char c)
+void	rgb_to_deci(t_cub *cub, char *tmp, char c)
 {
 	int	i;
 	int j;
@@ -42,31 +42,8 @@ void	rgb_to_hex(t_cub *cub, char *tmp, char c)
 		cub->floor = color;
 		cub->rgb_f += 1;
 	}
+	ft_free(decimal);
 
-	// puts(tmp);
-	
-	// while (tmp[i])
-	// {
-	// 	if (tmp[i] == ',')
-	// 		i++;
-	// 	if (c == 'C')
-	// 	{
-	// 		cub->celling *= 10;
-	// 		cub->celling += tmp[i] - '0';
-	// 	}
-	// 	if (c == 'F')
-	// 	{
-	// 		cub->floor *= 10;
-	// 		cub->floor += tmp[i] - '0';
-	// 	}
-	// 	i++;
-	// }
-	// if (c == 'C')
-	// 	cub->rgb_c += 1;
-	// if (c == 'F')
-	// 	cub->rgb_f += 1;
-	// cub->celling *= 25.69919741;
-	// cub->floor *= 25.69919741;
 }
 
 void	head_texture(t_cub *cub, char c)
@@ -112,7 +89,7 @@ void	head_rgb(t_cub *cub, char *tmp, char c)
 			ft_error("RGB Colors Not valid\n", 0);
 		i++;
 	}
-	rgb_to_hex(cub, tmp, c);
+	rgb_to_deci(cub, tmp, c);
 	free(tmp);
 }
 

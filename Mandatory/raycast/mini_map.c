@@ -6,7 +6,7 @@
 /*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 13:26:36 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/30 10:34:20 by iqessam          ###   ########.fr       */
+/*   Updated: 2022/09/30 18:54:23 by iqessam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ void	put_minimap_windows(t_ray *ray, int pix, unsigned int color)
 	int	i;
 	int	j;
 
-	i = ray->miniy + 1;
+	i = ray->miniy;
 	while (i < ray->miniy + pix)
 	{
-		j = ray->minix + 1;
+		j = ray->minix;
 		while (j < ray->minix + pix)
 		{
 			if (i >= 0 && i < (R_HEIGHT / 5) && j >= 0 && j < (R_WIDTH / 5))
@@ -78,7 +78,7 @@ void	put_minimap(t_ray *ray)
 	i = -1;
 	x = (ray->posx) - (R_WIDTH / 5 / 2);
 	y = (ray->posy) - (R_HEIGHT / 5 / 2);
-	fill_minimap(ray, ray->cub->celling);
+	fill_minimap(ray, TRANSPARENT);
 	while (ray->cub->body[++i])
 	{
 		j = -1;
@@ -86,11 +86,11 @@ void	put_minimap(t_ray *ray)
 		while (ray->cub->body[i][++j])
 		{
 			ray->minix = TILE_SIZE * j - x;
-			if (ray->cub->body[i][j] == '0' || \
-			ray->cub->body[i][j] == ray->cub->type)
-				put_minimap_windows(ray, TILE_SIZE, ray->cub->celling);
+			// if (ray->cub->body[i][j] == '0' || \
+			// ray->cub->body[i][j] == ray->cub->type)
+			// 	put_minimap_windows(ray, TILE_SIZE, ray->cub->celling);
 			if (ray->cub->body[i][j] == '1')
-				put_minimap_windows(ray, TILE_SIZE - 2, 0xffffff);
+				put_minimap_windows(ray, TILE_SIZE, 0xffffff);
 		}
 	}
 	my_mlx_pixel_put(ray, ray->cminix, ray->cminiy, 0xfff000);
