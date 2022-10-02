@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 09:58:20 by msaouab           #+#    #+#             */
-/*   Updated: 2022/10/01 21:06:15 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/10/02 18:27:54 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,6 @@ void	my_mlx_button(t_ray *ray)
 	mlx_hook(ray->win, 17, (1L << 17), ft_cross, ray);
 	mlx_hook(ray->win, 3, 0, ft_release, ray);
 	mlx_hook(ray->win, 2, 0, ft_event, ray);
+	mlx_hook(ray->win, 6, 0, ft_mouse, ray);
 	mlx_loop_hook(ray->mlx, ft_frame, ray);
 }

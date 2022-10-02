@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 09:34:00 by iqessam           #+#    #+#             */
-/*   Updated: 2022/10/01 20:35:45 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/10/02 18:28:51 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_cub
 	int				stext;
 	int				wtext;
 	int				etext;
+	int				newx;
 }	t_cub;
 
 typedef struct s_move
@@ -161,8 +162,8 @@ void	put_rays(t_ray *ray, unsigned int color);
 int		find_walls(t_ray *ray, int x, int y);
 void	put_3drender(t_ray *ray);
 void	projection_walls3d(t_ray *ray);
-void	color_buffer(t_ray *ray);
 void	put_celling(t_ray *ray);
 void	put_floor(t_ray *ray);
+int		ft_mouse(int x, int y, t_ray *ray);
 
 #endif

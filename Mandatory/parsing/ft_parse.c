@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 11:43:26 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/23 11:52:04 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/10/02 17:58:09 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	ft_init_parse(t_cub *cub)
 	cub->stext = 0;
 	cub->wtext = 0;
 	cub->etext = 0;
+	cub->newx = 0;
 }
 
 void	parsing_map(t_cub *cub, char **map)

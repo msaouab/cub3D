@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 15:24:28 by msaouab           #+#    #+#             */
-/*   Updated: 2022/10/01 20:05:49 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/10/02 18:29:06 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	get_first_pos(t_ray *ray)
 
 void	init_ray(t_ray *ray)
 {
+	ray->ra = 0;
 	ray->minix = 0;
 	ray->miniy = 0;
 	ray->move.x = 0;
@@ -69,7 +70,6 @@ void	init_ray(t_ray *ray)
 	ray->vertwallhitx = 0;
 	ray->vertwallhity = 0;
 	ray->ray_id = 0;
-	color_buffer(ray);
 	get_first_pos(ray);
 	get_first_angle(ray);
 }

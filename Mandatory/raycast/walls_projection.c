@@ -6,31 +6,11 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:52:23 by msaouab           #+#    #+#             */
-/*   Updated: 2022/10/01 20:27:16 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/10/02 18:28:34 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
-void	color_buffer(t_ray *ray)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	ray->pixel_color = (unsigned int *)malloc(sizeof(unsigned int) * \
-	(unsigned int)R_WIDTH * (unsigned int)R_HEIGHT);
-	while (x < R_WIDTH)
-	{
-		y = 0;
-		while (y < R_HEIGHT)
-		{
-			ray->pixel_color[(R_WIDTH * y) + x] = 0xFF000000;
-			y++;
-		}
-		x++;
-	}
-}
 
 void	projection_walls3d(t_ray *ray)
 {
