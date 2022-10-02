@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_button.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 09:58:20 by msaouab           #+#    #+#             */
-/*   Updated: 2022/10/01 21:06:15 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/10/02 12:52:18 by iqessam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ int	ft_frame(t_ray *ray)
 	if (ray->move.cam_vue == -1)
 		cam_right(ray);
 	mlx_clear_window(ray->mlx, ray->win);
+	put_minimap(ray);
+	put_rays(ray, 0xfff000);
 	put_minimap(ray);
 	mlx_put_image_to_window(ray->mlx, ray->win, ray->img, 0, 0);
 	return (0);

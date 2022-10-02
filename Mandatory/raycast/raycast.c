@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 08:44:28 by msaouab           #+#    #+#             */
-/*   Updated: 2022/10/01 20:05:52 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/10/02 12:51:57 by iqessam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	raycast(t_ray *ray)
 	xpmfile(ray);
 	ray->win = mlx_new_window(ray->mlx, R_WIDTH, R_HEIGHT, "CUB3D");
 	put_minimap(ray);
+	put_rays(ray, 0xfff000);
 	my_mlx_button(ray);
 	mlx_loop(ray->mlx);
 }

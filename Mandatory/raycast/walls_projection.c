@@ -3,32 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   walls_projection.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:52:23 by msaouab           #+#    #+#             */
-/*   Updated: 2022/10/01 20:27:16 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/10/02 12:47:52 by iqessam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	color_buffer(t_ray *ray)
+void	put_celling(t_ray *ray)
 {
-	int	x;
-	int	y;
+	int	i;
 
-	x = 0;
-	ray->pixel_color = (unsigned int *)malloc(sizeof(unsigned int) * \
-	(unsigned int)R_WIDTH * (unsigned int)R_HEIGHT);
-	while (x < R_WIDTH)
+	i = 0;
+	while (i < ray->top_pixel)
 	{
-		y = 0;
-		while (y < R_HEIGHT)
-		{
-			ray->pixel_color[(R_WIDTH * y) + x] = 0xFF000000;
-			y++;
-		}
-		x++;
+		my_mlx_pixel_put(ray, ray->ray_id, i, ray->cub->celling);
+		i++;
+	}
+}
+
+void	put_floor(t_ray *ray)
+{
+	int	i;
+
+	i = ray->bottom_pixel;
+	while (i < R_HEIGHT)
+	{
+		my_mlx_pixel_put(ray, ray->ray_id, i, ray->cub->floor);
+		i++;
 	}
 }
 
@@ -54,9 +58,9 @@ void	projection_walls3d(t_ray *ray)
 	while (i < ray->bottom_pixel)
 	{
 		if (ray->cast.washitvert)
-			my_mlx_pixel_put(ray, ray->ray_id, i, 5161616);
+			my_mlx_pixel_put(ray, ray->ray_id, i, 0x7895B2);
 		else
-			my_mlx_pixel_put(ray, ray->ray_id, i, 65165456);
+			my_mlx_pixel_put(ray, ray->ray_id, i, 0xF5EFE6);
 		i++;
 	}
 }

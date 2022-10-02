@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda_algorithm.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 19:28:31 by msaouab           #+#    #+#             */
-/*   Updated: 2022/10/01 21:10:49 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/10/02 12:49:19 by iqessam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,8 @@ void	castray(t_ray *ray)
 	wallhity = (horzhitdist < verthitdist) ? ray->horzwallhity : ray->vertwallhity;
 	ray->cast.disctance = (horzhitdist < verthitdist) ? horzhitdist : verthitdist;
 	ray->cast.washitvert = (verthitdist < horzhitdist);
-	draw_line(ray, 0x0fff000, wallhitx, wallhity);
+	ray->wallhitx = wallhitx;
+	ray->wallhity = wallhity;	
 }
 
 void	put_rays(t_ray *ray, unsigned int color)
@@ -187,10 +188,10 @@ void	put_rays(t_ray *ray, unsigned int color)
 	{
 		castray(ray);
 		ray->ray_id = i;
-		put_3drender(ray);
+		projection_walls3d(ray);
 		ray->ra_angle += ray->fov_angle / ray->num_rays;
 		normalize(ray);
+		draw_line(ray, 0x0fff000, ray->wallhitx, ray->wallhity);
 		i++;
 	}
-	mlx_clear_window(ray->mlx, ray->win);
 }

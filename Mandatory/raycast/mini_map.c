@@ -6,7 +6,7 @@
 /*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 13:26:36 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/30 18:54:23 by iqessam          ###   ########.fr       */
+/*   Updated: 2022/10/02 12:53:28 by iqessam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,5 @@ void	put_minimap(t_ray *ray)
 				put_minimap_windows(ray, TILE_SIZE, 0xffffff);
 		}
 	}
-	my_mlx_pixel_put(ray, ray->cminix, ray->cminiy, 0xfff000);
-	put_rays(ray, 0xfff000);
+	my_mlx_pixel_put(ray, ray->cminix, ray->cminiy, 0xffffff);
 }

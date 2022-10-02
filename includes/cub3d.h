@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 09:34:00 by iqessam           #+#    #+#             */
-/*   Updated: 2022/10/01 20:35:45 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/10/02 12:44:31 by iqessam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ typedef struct s_ray
 {
 	void			*mlx;
 	void			*win;
+	void			*win2;
 	void			*img;
 	char			*addr;
 	int				bits_per_pixel;
@@ -159,9 +160,7 @@ void	draw_line(t_ray *ray, int color, double x1, double y1);
 void	field_vue(t_ray *ray, unsigned int color);
 void	put_rays(t_ray *ray, unsigned int color);
 int		find_walls(t_ray *ray, int x, int y);
-void	put_3drender(t_ray *ray);
 void	projection_walls3d(t_ray *ray);
-void	color_buffer(t_ray *ray);
 void	put_celling(t_ray *ray);
 void	put_floor(t_ray *ray);
 

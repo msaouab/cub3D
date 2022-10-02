@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_ray.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 15:24:28 by msaouab           #+#    #+#             */
-/*   Updated: 2022/10/01 20:05:49 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/10/02 12:22:29 by iqessam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void	init_ray(t_ray *ray)
 	ray->vertwallhitx = 0;
 	ray->vertwallhity = 0;
 	ray->ray_id = 0;
-	color_buffer(ray);
 	get_first_pos(ray);
 	get_first_angle(ray);
 }
