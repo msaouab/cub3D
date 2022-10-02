@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
+/*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 11:39:11 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/30 12:00:49 by iqessam          ###   ########.fr       */
+/*   Updated: 2022/10/01 20:29:26 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	main(int argc, char **av)
 {
 	t_ray	ray;
 	t_cub	cub;
-	
 
 	ray.cub = &cub;
 	if (argc == 2)

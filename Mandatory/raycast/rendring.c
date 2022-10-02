@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendring.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
+/*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:28:32 by msaouab           #+#    #+#             */
-/*   Updated: 2022/10/01 13:39:09 by iqessam          ###   ########.fr       */
+/*   Updated: 2022/10/01 20:28:37 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	put_celling(t_ray *ray)
 	i = 0;
 	while (i < ray->top_pixel)
 	{
-			my_mlx_pixel_put(ray,ray->ray_id ,i,  ray->cub->celling);
+		my_mlx_pixel_put(ray, ray->ray_id, i, ray->cub->celling);
 		i++;
 	}
 }
@@ -31,13 +31,12 @@ void	put_floor(t_ray *ray)
 	i = ray->bottom_pixel;
 	while (i < R_HEIGHT)
 	{
-			my_mlx_pixel_put(ray, ray->ray_id ,i , ray->cub->floor);
+		my_mlx_pixel_put(ray, ray->ray_id, i, ray->cub->floor);
 		i++;
 	}
 }
 
 void	put_3drender(t_ray *ray)
 {
-	// (void)ray;
 	projection_walls3d(ray);
 }

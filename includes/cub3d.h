@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
+/*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 09:34:00 by iqessam           #+#    #+#             */
-/*   Updated: 2022/10/01 13:23:45 by iqessam          ###   ########.fr       */
+/*   Updated: 2022/10/01 20:35:45 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,44 +80,44 @@ typedef struct s_cast
 
 typedef struct s_ray
 {
-	void	*mlx;
-	void	*win;
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	double	posx;
-	double	posy;
-	double	ra;
-	double	ra_angle;
-	int		minix;
-	int		miniy;
-	int		w_minimap;
-	int		h_minimap;
-	double	dirx;
-	double	diry;
-	double	xinter;
-	double	yinter;
-	double	rad;
-	double	fov_angle;
-	double	num_rays;
-	int		cminix;
-	int		cminiy;
-	double	wallhitx;
-	double	wallhity;
-	double	distance;
-	double	horzwallhitx;
-	double	horzwallhity;
-	double	vertwallhitx;
-	double	vertwallhity;
-	unsigned int *pixel_color;
-	int		ray_id;
-	int 	top_pixel;
-	int 	bottom_pixel;
-	t_cub	*cub;
-	t_move	move;
-	t_cast	cast;
+	void			*mlx;
+	void			*win;
+	void			*img;
+	char			*addr;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
+	double			posx;
+	double			posy;
+	double			ra;
+	double			ra_angle;
+	int				minix;
+	int				miniy;
+	int				w_minimap;
+	int				h_minimap;
+	double			dirx;
+	double			diry;
+	double			xinter;
+	double			yinter;
+	double			rad;
+	double			fov_angle;
+	double			num_rays;
+	int				cminix;
+	int				cminiy;
+	double			wallhitx;
+	double			wallhity;
+	double			distance;
+	double			horzwallhitx;
+	double			horzwallhity;
+	double			vertwallhitx;
+	double			vertwallhity;
+	unsigned int	*pixel_color;
+	int				ray_id;
+	int				top_pixel;
+	int				bottom_pixel;
+	t_cub			*cub;
+	t_move			move;
+	t_cast			cast;
 }	t_ray;
 
 // ----------------Utils_functions----------------------------
@@ -155,14 +155,14 @@ void	xpmfile(t_ray *ray);
 void	my_mlx_pixel_put(t_ray *ray, int x, int y, unsigned int color);
 void	init_ray(t_ray *ray);
 void	put_minimap(t_ray *ray);
-void	dda_algorithm(t_ray *ray, int color, double x1, double y1);
+void	draw_line(t_ray *ray, int color, double x1, double y1);
 void	field_vue(t_ray *ray, unsigned int color);
 void	put_rays(t_ray *ray, unsigned int color);
 int		find_walls(t_ray *ray, int x, int y);
 void	put_3drender(t_ray *ray);
 void	projection_walls3d(t_ray *ray);
-void 	color_buffer(t_ray *ray);
+void	color_buffer(t_ray *ray);
 void	put_celling(t_ray *ray);
-void 	put_floor(t_ray *ray);
+void	put_floor(t_ray *ray);
 
 #endif

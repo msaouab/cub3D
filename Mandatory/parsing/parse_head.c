@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_head.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
+/*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 15:24:57 by msaouab           #+#    #+#             */
-/*   Updated: 2022/09/30 16:22:42 by iqessam          ###   ########.fr       */
+/*   Updated: 2022/10/01 20:32:06 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	rgb_to_deci(t_cub *cub, char *tmp, char c)
 {
-	int	i;
-	int j;
-	char **decimal;
-	unsigned int color;
+	int				i;
+	int				j;
+	char			**decimal;
+	unsigned int	color;
 
 	i = -1;
 	color = 0;
-	j = 256 * 256;     
+	j = 256 * 256;
 	decimal = ft_split(tmp, ',');
 	while (++i < 3)
 	{
@@ -35,7 +35,7 @@ void	rgb_to_deci(t_cub *cub, char *tmp, char c)
 	if (c == 'C')
 	{
 		cub->celling = color;
-			cub->rgb_c += 1;
+		cub->rgb_c += 1;
 	}	
 	if (c == 'F')
 	{
@@ -43,7 +43,6 @@ void	rgb_to_deci(t_cub *cub, char *tmp, char c)
 		cub->rgb_f += 1;
 	}
 	ft_free(decimal);
-
 }
 
 void	head_texture(t_cub *cub, char c)

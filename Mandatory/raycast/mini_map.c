@@ -86,9 +86,6 @@ void	put_minimap(t_ray *ray)
 		while (ray->cub->body[i][++j])
 		{
 			ray->minix = TILE_SIZE * j - x;
-			// if (ray->cub->body[i][j] == '0' || \
-			// ray->cub->body[i][j] == ray->cub->type)
-			// 	put_minimap_windows(ray, TILE_SIZE, ray->cub->celling);
 			if (ray->cub->body[i][j] == '1')
 				put_minimap_windows(ray, TILE_SIZE, 0xffffff);
 		}

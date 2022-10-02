@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   walls_projection.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
+/*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:52:23 by msaouab           #+#    #+#             */
-/*   Updated: 2022/10/01 13:31:05 by iqessam          ###   ########.fr       */
+/*   Updated: 2022/10/01 20:27:16 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void color_buffer(t_ray *ray)
+void	color_buffer(t_ray *ray)
 {
-	int x;
-	int y;
-	
+	int	x;
+	int	y;
+
 	x = 0;
-	ray->pixel_color = (unsigned int *)malloc(sizeof(unsigned int) * (unsigned int)R_WIDTH *
-	 (unsigned int)R_HEIGHT);
+	ray->pixel_color = (unsigned int *)malloc(sizeof(unsigned int) * \
+	(unsigned int)R_WIDTH * (unsigned int)R_HEIGHT);
 	while (x < R_WIDTH)
 	{
 		y = 0;
@@ -32,7 +32,6 @@ void color_buffer(t_ray *ray)
 	}
 }
 
-
 void	projection_walls3d(t_ray *ray)
 {
 	int		i;
@@ -44,10 +43,10 @@ void	projection_walls3d(t_ray *ray)
 	distprojectplane = (R_WIDTH / 2.0) / tan(ray->fov_angle / 2.0);
 	wallstrip_height = (TILE_SIZE / perpdist) * distprojectplane;
 	ray->top_pixel = (R_HEIGHT / 2.0) - (wallstrip_height / 2.0);
-	if (ray->top_pixel < 0)
+	if (ray->top_pixel < 0 || ray->top_pixel > R_HEIGHT)
 		ray->top_pixel = 0;
 	ray->bottom_pixel = (R_HEIGHT / 2.0) + (wallstrip_height / 2.0);
-	if (ray->bottom_pixel > R_HEIGHT)
+	if (ray->bottom_pixel > R_HEIGHT || ray->bottom_pixel < 0)
 		ray->bottom_pixel = R_HEIGHT;
 	i = ray->top_pixel;
 	put_celling(ray);
