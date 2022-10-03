@@ -6,7 +6,7 @@
 #    By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/18 09:45:39 by iqessam           #+#    #+#              #
-#    Updated: 2022/10/02 18:58:14 by iqessam          ###   ########.fr        #
+#    Updated: 2022/10/03 19:57:11 by iqessam          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,7 @@ SRC =	./Mandatory/parsing/main.c\
 		./utils/ft_strrchr.c\
 		./utils/ft_strtrim.c\
 		./utils/ft_split.c\
+		./utils/ft_itoa.c\
 		./utils/get_next_line.c\
 		./utils/get_next_line_utils.c\
 

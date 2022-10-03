@@ -6,7 +6,7 @@
 /*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 18:43:55 by iqessam           #+#    #+#             */
-/*   Updated: 2022/10/03 10:49:41 by iqessam          ###   ########.fr       */
+/*   Updated: 2022/10/03 17:41:05 by iqessam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void 	get_adress(t_ray *ray)
 
 void 	init_texture(t_ray *ray)
 {
+	
 	ray->north_text = mlx_xpm_file_to_image(ray->mlx, ray->cub->north, \
 	&ray->font_w, &ray->font_h);
 	ray->south_text = mlx_xpm_file_to_image(ray->mlx, ray->cub->south, \
@@ -44,4 +45,6 @@ void 	init_texture(t_ray *ray)
 	 !ray->west_text)
 	 	ft_error("mlx_xpm_file_to_image problem", 1);
 	get_adress(ray);
+	// ray->east_adress += 4;
+	// ray->east_adress += sizeof(unsigned int);
 }

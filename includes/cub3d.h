@@ -6,7 +6,7 @@
 /*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 09:34:00 by iqessam           #+#    #+#             */
-/*   Updated: 2022/10/03 11:37:42 by iqessam          ###   ########.fr       */
+/*   Updated: 2022/10/03 19:58:04 by iqessam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,7 @@ void	ft_free(char **str);
 int		ft_atoi(const char *str);
 int		ft_isdigit(int c);
 char	**ft_split(char const *s, char c);
+char	*ft_itoa(int b);
 
 // ---------------Parsing functions---------------------------
 

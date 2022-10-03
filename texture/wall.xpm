@@ -63,7 +63,7 @@ static char *result[] = {
 "C c #7E7F83",
 "Z c #6B9BCF",
 /* pixels */
-"11111111@@669sVV6$66&3&&i&&&yy$yy&&&yyyyyyyyppy&&&&3&&&&3&upy&uy&&&1yy30&3yy&&3&332112y$11y1&9iyip&9VV111@1+111---82-888--;>:::>",
+"12111111@@669sVV6$66&3&&i&&&yy$yy&&&yyyyyyyyppy&&&&3&&&&3&upy&uy&&&1yy30&3yy&&3&332112y$11y1&9iyip&9VV111@1+111---82-888--;>:::>",
 "1211-111@@#@adVV$66&&&&&yy&yy&%y&&y&y&yyyy%ypp&i&63&@3i&&3uu&y&u&y3&yy333&yy&1&13$12111u13$y&&&ipp39VV1111111@1----2--8;-=>>:,:>",
 "*1211$#$##6#O#VVkk@1y%&&&&&$&&y%&&&%y%%&%&%%3y&1&%&3&@&&&3@&&%@&#yyy3$&$y$&$&@&&1u111$13&&$3@13113$&VV+@@@-6*---1-2-;;1---22;:::",
 "@*22$3$$##@###VVhs1@y&&&&&&&&$y%$&&%%y%&y%%&&y1&&y&&1&&&1&1@&y&@%yy#$&3%yy$3&&&@$y11y11$&$3$&&1&31&&VV+@@@@-*@-@11-;;;-----;:>::",
@@ -190,5 +190,5 @@ static char *result[] = {
 "a03puyppi6pp9&ypipi669iiy&&yffad996iffyuuyyyyyyy66yyypyyidiiipiiCCiiiiiip&iiiy93338;999334ppu3uuyyyyuuuyOO33$u1@1113u331&141ee44",
 "40uuyupppppy&6y&diyyipi6yyy&sfpa99&pffuyidyyyyyy6&yyy&yydidiiiiiCCiidiip&3yiyi3p2-28p939uudp$#u3yyyyuu3uOO$&uu@@1@333u443&24ee22",
 "3339u3u3uyi&66iyyy&y&&&yu&y&y&3yy6yyuuy&3yyy&y3&&yyyyy&ybbbcpiidy%yiyixxi&&yyy03wn433&yi&yppyyyyyyy%13y3&u$$3$3331391131111-2222",
-"33333&uyyy6y6&&yyyy&i&i3yyy&yyy&9yuuyuyyy&yyy&33yyy&yyy&bbcc66ii%yyyyixci&yyyy30nw4393&uyyydyyyy%yyy313yyy$@$3&y1333113141212122"
+"33333&uyyy6y6&&yyyy&i&i3yyy&yyy&9yuuyuyyy&yyy&33yyy&yyy&bbcc66ii%yyyyixci&yyyy30nw4393&uyyydyyyy%yyy313yyy$@$3&y1333113141212123"
 };

@@ -1,7 +1,7 @@
-NO ./texture/wall.xpm
-SO ./texture/wall.xpm
+NO ./texture/North.xpm
+SO ./texture/IMG_logo__2017_.xpm
 EA ./texture/wall.xpm
-WE ./texture/wall.xpm
+WE ./texture/IMG_logo__2017_.xpm
 
 F 54,126,24
 C 137,207,253
