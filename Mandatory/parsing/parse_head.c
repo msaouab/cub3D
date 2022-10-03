@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_head.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 15:24:57 by msaouab           #+#    #+#             */
-/*   Updated: 2022/10/01 20:32:06 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/10/02 19:23:27 by iqessam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ void	head_texture(t_cub *cub, char c)
 		ft_error("error: Texture is not an '.xpm' file\n", 1);
 	texture_counter(cub, c);
 	cub->cnt++;
-	free(str);
 }
 
 void	head_rgb(t_cub *cub, char *tmp, char c)

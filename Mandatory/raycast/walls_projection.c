@@ -6,7 +6,7 @@
 /*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:52:23 by msaouab           #+#    #+#             */
-/*   Updated: 2022/10/02 12:47:52 by iqessam          ###   ########.fr       */
+/*   Updated: 2022/10/03 12:24:22 by iqessam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,13 @@ void	put_floor(t_ray *ray)
 		i++;
 	}
 }
-
+int is_pair(t_ray *ray)
+{
+	if ((ray->ray_id % 8) == 0)
+		return (16711680);
+	else
+		return (1582919);
+}
 void	projection_walls3d(t_ray *ray)
 {
 	int		i;
@@ -55,12 +61,13 @@ void	projection_walls3d(t_ray *ray)
 	i = ray->top_pixel;
 	put_celling(ray);
 	put_floor(ray);
+	// int textureOffsetX;
 	while (i < ray->bottom_pixel)
 	{
 		if (ray->cast.washitvert)
-			my_mlx_pixel_put(ray, ray->ray_id, i, 0x7895B2);
+			my_mlx_pixel_put(ray, ray->ray_id, i, 7895122);
 		else
-			my_mlx_pixel_put(ray, ray->ray_id, i, 0xF5EFE6);
+			my_mlx_pixel_put(ray, ray->ray_id, i, 1582919);
 		i++;
 	}
 }

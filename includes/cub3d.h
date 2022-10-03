@@ -6,7 +6,7 @@
 /*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 09:34:00 by iqessam           #+#    #+#             */
-/*   Updated: 2022/10/02 12:44:31 by iqessam          ###   ########.fr       */
+/*   Updated: 2022/10/03 11:37:42 by iqessam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define R_HEIGHT 720
 # define WALL_STRIP 1
 # define TILE_SIZE 12
+# define TEXTURE_SIZE 12
 # define TRANSPARENT 0x0ff000000
 # define MAX_VALUE 1e30
 # define TRUE 1
@@ -88,6 +89,8 @@ typedef struct s_ray
 	int				bits_per_pixel;
 	int				line_length;
 	int				endian;
+	int				line_length2;
+	int				endian2;
 	double			posx;
 	double			posy;
 	double			ra;
@@ -116,6 +119,17 @@ typedef struct s_ray
 	int				ray_id;
 	int				top_pixel;
 	int				bottom_pixel;
+	// ---------------Textures-----------------------------
+	void 			*north_text;
+	void 			*south_text;
+	void 			*west_text;
+	void 			*east_text;
+	int 			font_h;
+	int 			font_w;
+	char 			*north_adress;
+	char 			*south_adress;
+	char 			*east_adress;
+	char 			*west_adress;
 	t_cub			*cub;
 	t_move			move;
 	t_cast			cast;
@@ -163,5 +177,6 @@ int		find_walls(t_ray *ray, int x, int y);
 void	projection_walls3d(t_ray *ray);
 void	put_celling(t_ray *ray);
 void	put_floor(t_ray *ray);
+void 	init_texture(t_ray *ray);
 
 #endif

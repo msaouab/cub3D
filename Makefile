@@ -6,7 +6,7 @@
 #    By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/18 09:45:39 by iqessam           #+#    #+#              #
-#    Updated: 2022/10/02 12:18:56 by iqessam          ###   ########.fr        #
+#    Updated: 2022/10/02 18:58:14 by iqessam          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SRC =	./Mandatory/parsing/main.c\
 		./Mandatory/raycast/init_ray.c\
 		./Mandatory/raycast/dda_algorithm.c\
 		./Mandatory/raycast/walls_projection.c\
+		./Mandatory/raycast/texture.c\
 		./utils/errors_file.c\
 		./utils/ft_atoi.c\
 		./utils/ft_isdigit.c\

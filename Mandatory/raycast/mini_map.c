@@ -6,7 +6,7 @@
 /*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 13:26:36 by msaouab           #+#    #+#             */
-/*   Updated: 2022/10/02 12:53:28 by iqessam          ###   ########.fr       */
+/*   Updated: 2022/10/03 10:45:56 by iqessam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	xpmfile(t_ray *ray)
 	&ray->line_length, &ray->endian);
 	if (!ray->addr)
 		ft_error("mlx_get_data_addr problem", 1);
+	// init_texture(ray);
 }
 
 void	my_mlx_pixel_put(t_ray *ray, int x, int y, unsigned int color)
