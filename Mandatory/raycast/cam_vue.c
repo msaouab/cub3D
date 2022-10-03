@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 13:06:54 by msaouab           #+#    #+#             */
-/*   Updated: 2022/10/02 18:27:58 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/10/03 16:49:30 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ int	ft_mouse(int x, int y, t_ray *ray)
 {
 	static int	old_x;
 
-	(void)y;
+	if (y < 0 || y > R_HEIGHT)
+		return (0);
 	if (x <= R_WIDTH && x >= 0 && x < old_x)
 		ray->ra -= 0.05;
 	if (x >= 0 && x <= R_WIDTH && x > old_x)

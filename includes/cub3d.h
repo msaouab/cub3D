@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 09:34:00 by iqessam           #+#    #+#             */
-/*   Updated: 2022/10/02 18:28:51 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/10/03 16:52:59 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <fcntl.h>
 # include <math.h>
 # include <mlx.h>
+# include <signal.h>
 # include "../utils/get_next_line.h"
 
 # define R_WIDTH 1080
@@ -79,6 +80,11 @@ typedef struct s_cast
 	double	disctance;
 }	t_cast;
 
+typedef struct s_sfx
+{
+	int	pid;
+}	t_sfx;
+
 typedef struct s_ray
 {
 	void			*mlx;
@@ -119,6 +125,7 @@ typedef struct s_ray
 	t_cub			*cub;
 	t_move			move;
 	t_cast			cast;
+	t_sfx			sfx;
 }	t_ray;
 
 // ----------------Utils_functions----------------------------
@@ -165,5 +172,6 @@ void	projection_walls3d(t_ray *ray);
 void	put_celling(t_ray *ray);
 void	put_floor(t_ray *ray);
 int		ft_mouse(int x, int y, t_ray *ray);
+void	sfx_sound(t_ray *ray);
 
 #endif

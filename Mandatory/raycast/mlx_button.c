@@ -6,14 +6,15 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 09:58:20 by msaouab           #+#    #+#             */
-/*   Updated: 2022/10/02 18:27:54 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/10/03 16:57:27 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	ft_cross(void)
+int	ft_cross(t_ray *ray)
 {
+	kill(ray->sfx.pid, SIGSEGV);
 	exit(0);
 	return (0);
 }
@@ -29,7 +30,7 @@ int	ft_release(int keycode, t_ray *ray)
 	else if (keycode == 13)
 		ray->move.y = 0;
 	else if (keycode == 53)
-		ft_cross();
+		ft_cross(ray);
 	else if (keycode == 123)
 		ray->move.cam_vue = 0;
 	else if (keycode == 124)
@@ -48,7 +49,7 @@ int	ft_event(int keycode, t_ray *ray)
 	else if (keycode == 13)
 		ray->move.y = 1;
 	else if (keycode == 53)
-		ft_cross();
+		ft_cross(ray);
 	else if (keycode == 123)
 		ray->move.cam_vue = 1;
 	else if (keycode == 124)
