@@ -6,7 +6,7 @@
 /*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 09:34:00 by iqessam           #+#    #+#             */
-/*   Updated: 2022/10/04 11:09:09 by iqessam          ###   ########.fr       */
+/*   Updated: 2022/10/04 11:58:20 by iqessam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,6 @@ typedef struct s_ray
 	int				bits_per_pixel;
 	int				line_length;
 	int				endian;
-	int				line_length2;
-	int				endian2;
 	double			posx;
 	double			posy;
 	double			ra;
@@ -124,12 +122,11 @@ typedef struct s_ray
 	void 			*south_text;
 	void 			*west_text;
 	void 			*east_text;
-	int 			font_h;
-	int 			font_w;
-	int 			*north_adress;
-	char 			*south_adress;
-	char 			*east_adress;
-	char 			*west_adress;
+	int 			font_h[4];
+	int 			font_w[4];
+	int 			*adress[4];
+	int				line_length2;
+	int				endian2;
 	t_cub			*cub;
 	t_move			move;
 	t_cast			cast;

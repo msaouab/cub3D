@@ -6,7 +6,7 @@
 /*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:52:23 by msaouab           #+#    #+#             */
-/*   Updated: 2022/10/04 11:10:24 by iqessam          ###   ########.fr       */
+/*   Updated: 2022/10/04 12:05:31 by iqessam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,10 @@ void	put_floor(t_ray *ray)
 	}
 }
 
-int 	converted(char *texel_color)
-{
-	int	decimal;
-	unsigned int tmp;
-	
-	tmp = *(unsigned int*)texel_color;
-	decimal = tmp / 256;
-	return (decimal);
-}
-
 void	projection_walls3d(t_ray *ray)
 {
 	int		i;
+	int		j = 0;
 	int color;
 	double	wallstrip_height;
 	double	distprojectplane;
@@ -73,14 +64,19 @@ void	projection_walls3d(t_ray *ray)
 		else
 			textureOffsetX = ray->wallhitx / TILE_SIZE;
 		textureOffsetX = textureOffsetX - floor(textureOffsetX);
-		textureOffsetX *= ray->font_w;
-           // calculate texture offset X
-        // calculate texture offset Y
-        int distanceFromTop = i + (wallstrip_height / 2) - (R_HEIGHT / 2);
-        int textureOffsetY = distanceFromTop * ((float)ray->font_h / wallstrip_height);
-        // set the color of the wall based on the color from the texture
-        // char *texel_color = ray->north_adress + (int)(4 *  ((ray->font_w * textureOffsetY) + textureOffsetX));
-		color = ray->north_adress[ray->font_w * textureOffsetY + (int)textureOffsetX];
+        if (!ray->cast.washitvert && ray->cast.rayfaceup)
+			j = 0;
+		else if (!ray->cast.washitvert && ray->cast.rayfacedown)
+			j = 1;
+		else if (ray->cast.washitvert && ray->cast.rayfaceleft)
+			j = 2;
+		else if (ray->cast.washitvert && ray->cast.rayfaceright)
+			j = 3;
+		int *adress = ray->adress[j];
+		textureOffsetX *= ray->font_w[j];
+		int distanceFromTop = i + (wallstrip_height / 2) - (R_HEIGHT / 2);
+        int textureOffsetY = distanceFromTop * ((float)ray->font_h[j] / wallstrip_height);
+		color = adress[ray->font_w[j] * textureOffsetY + (int)textureOffsetX];
 		// printf("%X\n", *(unsigned int*)texel_color);
 		my_mlx_pixel_put(ray, ray->ray_id, i, color);
 		i++;

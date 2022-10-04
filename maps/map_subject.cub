@@ -1,7 +1,7 @@
-NO ./texture/saouab.xpm
+NO ./texture/wall.xpm
 SO ./texture/saouab.xpm
-EA ./texture/saouab.xpm
-WE ./texture/saouab.xpm
+EA ./texture/east.xpm
+WE ./texture/west.xpm
 
 F 54,126,24
 C 137,207,253
