@@ -1,7 +1,7 @@
-NO ./texture/North.xpm
-SO ./texture/IMG_logo__2017_.xpm
-EA ./texture/wall.xpm
-WE ./texture/IMG_logo__2017_.xpm
+NO ./texture/saouab.xpm
+SO ./texture/saouab.xpm
+EA ./texture/saouab.xpm
+WE ./texture/saouab.xpm
 
 F 54,126,24
 C 137,207,253

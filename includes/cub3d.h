@@ -6,7 +6,7 @@
 /*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 09:34:00 by iqessam           #+#    #+#             */
-/*   Updated: 2022/10/03 19:58:04 by iqessam          ###   ########.fr       */
+/*   Updated: 2022/10/04 11:09:09 by iqessam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ typedef struct s_ray
 	void 			*east_text;
 	int 			font_h;
 	int 			font_w;
-	char 			*north_adress;
+	int 			*north_adress;
 	char 			*south_adress;
 	char 			*east_adress;
 	char 			*west_adress;

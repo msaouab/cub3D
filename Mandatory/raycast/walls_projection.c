@@ -6,12 +6,11 @@
 /*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:52:23 by msaouab           #+#    #+#             */
-/*   Updated: 2022/10/03 21:49:40 by iqessam          ###   ########.fr       */
+/*   Updated: 2022/10/04 11:10:24 by iqessam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-#include <string.h>
 
 void	put_celling(t_ray *ray)
 {
@@ -36,60 +35,25 @@ void	put_floor(t_ray *ray)
 		i++;
 	}
 }
-int is_pair(t_ray *ray)
-{
-	if ((ray->ray_id % 8) == 0)
-		return (16711680);
-	else
-		return (1582919);
-}
-
-
-char *deci_to_hexa(long int n)
-{
-	char *buffer = NULL;
-	if (n < 9)
-	{
-		printf("%ld\n", (n % 16));
-			// buffer = ft_itoa(n);
-		// else if (n >= 10)
-		// 	buffer = strcat(buffer,(n % 10) + 'A');
-	}
-	else
-	{
-		deci_to_hexa(n / 16);
-		// deci_to_hexa(n % 16);
-	}
-	return (buffer);
-}
-
 
 int 	converted(char *texel_color)
 {
-	int	decimal = 0;
-	unsigned int tmp = *(unsigned int*)texel_color;
-	// printf("%s\n", deci_to_hexa(tmp));
-	// printf("%x\n", tmp);
-	// exit (0);
-	char *buffer = ft_itoa(tmp);
-	//  printf("%s\n", buffer);
-
-	decimal += ((ft_atoi(&buffer[0]) * 16) + ft_atoi(&buffer[1]) * (256 * 256)) \
-	+ ((ft_atoi(&buffer[2]) * 16) + ft_atoi(&buffer[3]) * 256) \
-	+ (ft_atoi(&buffer[4]) * 16 + ft_atoi(&buffer[5])) \
-	- (ft_atoi(&buffer[6]) * 16 + ft_atoi(&buffer[7]));
-	printf("%d\n", decimal);
-	exit (1);
+	int	decimal;
+	unsigned int tmp;
+	
+	tmp = *(unsigned int*)texel_color;
+	decimal = tmp / 256;
 	return (decimal);
 }
 
 void	projection_walls3d(t_ray *ray)
 {
 	int		i;
+	int color;
 	double	wallstrip_height;
 	double	distprojectplane;
 	double	perpdist;
-	int 	textureOffsetX;
+	double	textureOffsetX;
 	perpdist = ray->cast.disctance * cos(ray->ra_angle - ray->ra);
 	distprojectplane = (R_WIDTH / 2.0) / tan(ray->fov_angle / 2.0);
 	wallstrip_height = (TILE_SIZE / perpdist) * distprojectplane;
@@ -102,23 +66,23 @@ void	projection_walls3d(t_ray *ray)
 	i = ray->top_pixel;
 	put_celling(ray);
 	put_floor(ray);
-	if (ray->cast.washitvert)
-		textureOffsetX = (int)ray->wallhity % TEXTURE_SIZE;
-	else
-		textureOffsetX = (int)ray->wallhitx % TEXTURE_SIZE;
 	while (i < ray->bottom_pixel)
 	{
+		if (ray->cast.washitvert)
+			textureOffsetX = ray->wallhity / TILE_SIZE;
+		else
+			textureOffsetX = ray->wallhitx / TILE_SIZE;
+		textureOffsetX = textureOffsetX - floor(textureOffsetX);
+		textureOffsetX *= ray->font_w;
            // calculate texture offset X
         // calculate texture offset Y
         int distanceFromTop = i + (wallstrip_height / 2) - (R_HEIGHT / 2);
-        int textureOffsetY = distanceFromTop * ((float)TEXTURE_SIZE / wallstrip_height);
-		// printf("%d\n", textureOffsetY);
+        int textureOffsetY = distanceFromTop * ((float)ray->font_h / wallstrip_height);
         // set the color of the wall based on the color from the texture
-		// char *dst = ray->north_adress + ((ray->ray_id * ray->line_length2) + i * ((ray->bits_per_pixel / 8)));
-        char *texel_color = ray->north_adress + (TEXTURE_SIZE * textureOffsetY) + textureOffsetX;
+        // char *texel_color = ray->north_adress + (int)(4 *  ((ray->font_w * textureOffsetY) + textureOffsetX));
+		color = ray->north_adress[ray->font_w * textureOffsetY + (int)textureOffsetX];
 		// printf("%X\n", *(unsigned int*)texel_color);
-		my_mlx_pixel_put(ray, ray->ray_id, i, converted(texel_color));
-		// exit (0);
+		my_mlx_pixel_put(ray, ray->ray_id, i, color);
 		i++;
 	}
 }

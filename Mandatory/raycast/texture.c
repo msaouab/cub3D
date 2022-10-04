@@ -6,7 +6,7 @@
 /*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 18:43:55 by iqessam           #+#    #+#             */
-/*   Updated: 2022/10/03 17:41:05 by iqessam          ###   ########.fr       */
+/*   Updated: 2022/10/04 11:08:46 by iqessam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void 	get_adress(t_ray *ray)
 {
-	ray->north_adress = mlx_get_data_addr(ray->north_text, &ray->bits_per_pixel, \
+	ray->north_adress = (int *)mlx_get_data_addr(ray->north_text, &ray->bits_per_pixel, \
 	&ray->line_length2, &ray->endian2);
 	ray->south_adress = mlx_get_data_addr(ray->south_text, &ray->bits_per_pixel, \
 	&ray->line_length2, &ray->endian2);
@@ -35,6 +35,7 @@ void 	init_texture(t_ray *ray)
 	
 	ray->north_text = mlx_xpm_file_to_image(ray->mlx, ray->cub->north, \
 	&ray->font_w, &ray->font_h);
+	// printf()
 	ray->south_text = mlx_xpm_file_to_image(ray->mlx, ray->cub->south, \
 	&ray->font_w, &ray->font_h);
 	ray->west_text = mlx_xpm_file_to_image(ray->mlx, ray->cub->west, \
