@@ -1,8 +1,8 @@
 C 0,19,255
 F 0,128,0
 
-NO ./texture/North.xpm
-SO ./texture/south.xpm
+NO ./texture/wall.xpm
+SO ./texture/saouab.xpm
 EA ./texture/east.xpm
 WE ./texture/west.xpm
 

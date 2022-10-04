@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_head.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
+/*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 15:24:57 by msaouab           #+#    #+#             */
-/*   Updated: 2022/10/02 19:23:27 by iqessam          ###   ########.fr       */
+/*   Updated: 2022/10/04 17:03:20 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,33 +15,22 @@
 void	rgb_to_deci(t_cub *cub, char *tmp, char c)
 {
 	int				i;
-	int				j;
 	char			**decimal;
 	unsigned int	color;
 
 	i = -1;
 	color = 0;
-	j = 256 * 256;
 	decimal = ft_split(tmp, ',');
 	while (++i < 3)
 	{
 		if (i == 0)
-			color += ft_atoi(decimal[i]) * j;
+			color += ft_atoi(decimal[i]) * (256 * 256);
 		if (i == 1)
 			color += ft_atoi(decimal[i]) * 256;
 		if (i == 2)
 			color += ft_atoi(decimal[i]);
-	}	
-	if (c == 'C')
-	{
-		cub->celling = color;
-		cub->rgb_c += 1;
-	}	
-	if (c == 'F')
-	{
-		cub->floor = color;
-		cub->rgb_f += 1;
 	}
+	assignement_color(cub, c, color);
 	ft_free(decimal);
 }
 

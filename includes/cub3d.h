@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
+/*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 09:34:00 by iqessam           #+#    #+#             */
-/*   Updated: 2022/10/04 11:58:20 by iqessam          ###   ########.fr       */
+/*   Updated: 2022/10/04 17:03:39 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <fcntl.h>
 # include <math.h>
 # include <mlx.h>
+# include <signal.h>
 # include "../utils/get_next_line.h"
 
 # define R_WIDTH 1080
@@ -67,6 +68,11 @@ typedef struct s_move
 	float	inc_speed;
 }	t_move;
 
+typedef struct s_sfx
+{
+	int	pid;
+}	t_sfx;
+
 // --------------Structs for raycasting-----------------------
 
 typedef struct s_cast
@@ -78,6 +84,18 @@ typedef struct s_cast
 	int		washitvert;
 	double	disctance;
 }	t_cast;
+
+typedef struct s_line
+{
+	int		dx;
+	int		dy;
+	double	xinc;
+	double	yinc;
+	double	x;
+	double	y;
+	double	xstep;
+	double	ystep;
+}	t_line;
 
 typedef struct s_ray
 {
@@ -117,19 +135,28 @@ typedef struct s_ray
 	int				ray_id;
 	int				top_pixel;
 	int				bottom_pixel;
-	// ---------------Textures-----------------------------
-	void 			*north_text;
-	void 			*south_text;
-	void 			*west_text;
-	void 			*east_text;
-	int 			font_h[4];
-	int 			font_w[4];
-	int 			*adress[4];
+	void			*north_text;
+	void			*south_text;
+	void			*west_text;
+	void			*east_text;
+	int				font_h[4];
+	int				font_w[4];
+	int				*adress[4];
 	int				line_length2;
 	int				endian2;
+	double			textureoffsetx;
+	int				textureoffsety;
+	double			wallstrip;
+	int				distancefromtop;
+	double			xstep;
+	double			ystep;
+	int				foundhorzwallhit;
+	int				foundvertzwallhit;
+	t_line			line;
 	t_cub			*cub;
 	t_move			move;
 	t_cast			cast;
+	t_sfx			sfx;
 }	t_ray;
 
 // ----------------Utils_functions----------------------------
@@ -153,6 +180,7 @@ void	read_head(t_cub *cub, char **map);
 void	read_body(t_cub *cub, char **map);
 void	parse_content(t_cub *cub);
 void	texture_counter(t_cub *cub, char c);
+void	assignement_color(t_cub *cub, char c, unsigned int color);
 
 // --------------Raycasting functions-------------------------
 
@@ -170,11 +198,16 @@ void	init_ray(t_ray *ray);
 void	put_minimap(t_ray *ray);
 void	draw_line(t_ray *ray, int color, double x1, double y1);
 void	field_vue(t_ray *ray, unsigned int color);
-void	put_rays(t_ray *ray, unsigned int color);
+void	put_rays(t_ray *ray);
 int		find_walls(t_ray *ray, int x, int y);
 void	projection_walls3d(t_ray *ray);
 void	put_celling(t_ray *ray);
 void	put_floor(t_ray *ray);
-void 	init_texture(t_ray *ray);
+void	init_texture(t_ray *ray);
+int		ft_mouse(int x, int y, t_ray *ray);
+void	sfx_sound(t_ray *ray);
+double	normalize(t_ray *ray);
+void	facing_ray(t_ray *ray);
+double	distancebetweenpoints(double x1, double y1, double x2, double y2);
 
 #endif

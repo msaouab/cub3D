@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   walls_projection.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
+/*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:52:23 by msaouab           #+#    #+#             */
-/*   Updated: 2022/10/04 14:01:13 by iqessam          ###   ########.fr       */
+/*   Updated: 2022/10/04 15:31:21 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,48 +36,56 @@ void	put_floor(t_ray *ray)
 	}
 }
 
+void	put_texture_walls(t_ray *ray, int i)
+{
+	int		*tmp_adress;
+	int		color;
+	int		j;
+
+	j = 0;
+	ray->textureoffsetx = ray->wallhitx / TILE_SIZE;
+	if (ray->cast.washitvert)
+		ray->textureoffsetx = ray->wallhity / TILE_SIZE;
+	ray->textureoffsetx -= floor(ray->textureoffsetx);
+	if (!ray->cast.washitvert && ray->cast.rayfaceup)
+		j = 0;
+	else if (!ray->cast.washitvert && ray->cast.rayfacedown)
+		j = 1;
+	else if (ray->cast.washitvert && ray->cast.rayfaceleft)
+		j = 2;
+	else if (ray->cast.washitvert && ray->cast.rayfaceright)
+		j = 3;
+	tmp_adress = ray->adress[j];
+	ray->textureoffsetx *= ray->font_w[j];
+	ray->distancefromtop = i + (ray->wallstrip / 2) - (R_HEIGHT / 2);
+	ray->textureoffsety = ray->distancefromtop * \
+	((float)ray->font_h[j] / ray->wallstrip);
+	color = tmp_adress[(ray->font_w[j] * ray->textureoffsety) + \
+	(int)ray->textureoffsetx];
+	my_mlx_pixel_put(ray, ray->ray_id, i, color);
+}
+
 void	projection_walls3d(t_ray *ray)
 {
 	int		i;
-	int		j = 0;
-	int color;
-	double	wallstrip_height;
 	double	distprojectplane;
 	double	perpdist;
-	double	textureOffsetX;
+
 	perpdist = ray->cast.disctance * cos(ray->ra_angle - ray->ra);
 	distprojectplane = (R_WIDTH / 2.0) / tan(ray->fov_angle / 2.0);
-	wallstrip_height = (TILE_SIZE / perpdist) * distprojectplane;
-	ray->top_pixel = (R_HEIGHT / 2.0) - (wallstrip_height / 2.0);
+	ray->wallstrip = (TILE_SIZE / perpdist) * distprojectplane;
+	ray->top_pixel = (R_HEIGHT / 2.0) - (ray->wallstrip / 2.0);
 	if (ray->top_pixel < 0 || ray->top_pixel > R_HEIGHT)
 		ray->top_pixel = 0;
-	ray->bottom_pixel = (R_HEIGHT / 2.0) + (wallstrip_height / 2.0);
+	ray->bottom_pixel = (R_HEIGHT / 2.0) + (ray->wallstrip / 2.0);
 	if (ray->bottom_pixel > R_HEIGHT || ray->bottom_pixel < 0)
 		ray->bottom_pixel = R_HEIGHT;
-	i = ray->top_pixel;
 	put_celling(ray);
 	put_floor(ray);
+	i = ray->top_pixel;
 	while (i < ray->bottom_pixel)
 	{
-		if (ray->cast.washitvert)
-			textureOffsetX = ray->wallhity / TILE_SIZE;
-		else
-			textureOffsetX = ray->wallhitx / TILE_SIZE;
-		textureOffsetX = textureOffsetX - floor(textureOffsetX);
-        if (!ray->cast.washitvert && ray->cast.rayfaceup)
-			j = 0;
-		else if (!ray->cast.washitvert && ray->cast.rayfacedown)
-			j = 1;
-		else if (ray->cast.washitvert && ray->cast.rayfaceleft)
-			j = 2;
-		else if (ray->cast.washitvert && ray->cast.rayfaceright)
-			j = 3;
-		int *adress = ray->adress[j];
-		textureOffsetX *= ray->font_w[j];
-		int distanceFromTop = i + (wallstrip_height / 2) - (R_HEIGHT / 2);
-        int textureOffsetY = distanceFromTop * ((float)ray->font_h[j] / wallstrip_height);
-		color = adress[(ray->font_w[j] * textureOffsetY) + (int)textureOffsetX];
-		my_mlx_pixel_put(ray, ray->ray_id, i, color);
+		put_texture_walls(ray, i);
 		i++;
 	}
 }

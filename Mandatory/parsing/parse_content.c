@@ -3,14 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   parse_content.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
+/*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 08:02:37 by msaouab           #+#    #+#             */
-/*   Updated: 2022/10/02 18:25:21 by iqessam          ###   ########.fr       */
+/*   Updated: 2022/10/04 17:03:26 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+void	assignement_color(t_cub *cub, char c, unsigned int color)
+{
+	if (c == 'C')
+	{
+		cub->celling = color;
+		cub->rgb_c += 1;
+	}	
+	if (c == 'F')
+	{
+		cub->floor = color;
+		cub->rgb_f += 1;
+	}
+}
 
 void	texture_counter(t_cub *cub, char c)
 {

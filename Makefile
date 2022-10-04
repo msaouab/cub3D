@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+         #
+#    By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/18 09:45:39 by iqessam           #+#    #+#              #
-#    Updated: 2022/10/03 19:57:11 by iqessam          ###   ########.fr        #
+#    Updated: 2022/10/04 15:56:00 by msaouab          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,8 @@ SRC =	./Mandatory/parsing/main.c\
 		./Mandatory/raycast/mini_map.c\
 		./Mandatory/raycast/cam_vue.c\
 		./Mandatory/raycast/init_ray.c\
-		./Mandatory/raycast/dda_algorithm.c\
+		./Mandatory/raycast/raycasting_calcul.c\
+		./Mandatory/raycast/calcul_utils.c\
 		./Mandatory/raycast/walls_projection.c\
 		./Mandatory/raycast/texture.c\
 		./utils/errors_file.c\
@@ -54,6 +55,7 @@ SRC =	./Mandatory/parsing/main.c\
 		./utils/ft_strtrim.c\
 		./utils/ft_split.c\
 		./utils/ft_itoa.c\
+		./utils/sound.c\
 		./utils/get_next_line.c\
 		./utils/get_next_line_utils.c\
 
