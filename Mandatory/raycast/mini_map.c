@@ -6,7 +6,7 @@
 /*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 13:26:36 by msaouab           #+#    #+#             */
-/*   Updated: 2022/10/03 16:01:19 by iqessam          ###   ########.fr       */
+/*   Updated: 2022/10/04 14:07:18 by iqessam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ void	put_minimap(t_ray *ray)
 	i = -1;
 	x = (ray->posx) - (R_WIDTH / 5 / 2);
 	y = (ray->posy) - (R_HEIGHT / 5 / 2);
-	// printf("x\t%f\t\t y\t%f\n", ray->posx, ray->posy);
 	fill_minimap(ray, TRANSPARENT);
 	while (ray->cub->body[++i])
 	{

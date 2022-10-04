@@ -6,7 +6,7 @@
 /*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:52:23 by msaouab           #+#    #+#             */
-/*   Updated: 2022/10/04 12:05:31 by iqessam          ###   ########.fr       */
+/*   Updated: 2022/10/04 14:01:13 by iqessam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,7 @@ void	projection_walls3d(t_ray *ray)
 		textureOffsetX *= ray->font_w[j];
 		int distanceFromTop = i + (wallstrip_height / 2) - (R_HEIGHT / 2);
         int textureOffsetY = distanceFromTop * ((float)ray->font_h[j] / wallstrip_height);
-		color = adress[ray->font_w[j] * textureOffsetY + (int)textureOffsetX];
-		// printf("%X\n", *(unsigned int*)texel_color);
+		color = adress[(ray->font_w[j] * textureOffsetY) + (int)textureOffsetX];
 		my_mlx_pixel_put(ray, ray->ray_id, i, color);
 		i++;
 	}
