@@ -6,7 +6,7 @@
 #    By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/18 09:45:39 by iqessam           #+#    #+#              #
-#    Updated: 2022/10/05 20:25:35 by msaouab          ###   ########.fr        #
+#    Updated: 2022/10/05 20:28:28 by msaouab          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -129,4 +129,4 @@ fclean : clean
 		@rm -f $(NAME) $(NAME_B)
 		@echo "${bold}$(green).:|${red}	   REMOVE EXECUTABLE	$(green)|:. ==> [OK]${ED}"
 
-re :  fclean all
+re :  fclean all bonus
