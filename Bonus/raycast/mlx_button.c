@@ -6,11 +6,11 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 09:58:20 by msaouab           #+#    #+#             */
-/*   Updated: 2022/10/05 20:25:57 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/10/05 20:06:55 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 int	ft_cross(t_ray *ray)
 {
@@ -72,7 +72,9 @@ int	ft_frame(t_ray *ray)
 	if (ray->move.cam_vue == -1)
 		cam_right(ray);
 	mlx_clear_window(ray->mlx, ray->win);
+	put_minimap(ray);
 	put_rays(ray);
+	put_minimap(ray);
 	mlx_put_image_to_window(ray->mlx, ray->win, ray->img, 0, 0);
 	return (0);
 }
@@ -82,5 +84,6 @@ void	my_mlx_button(t_ray *ray)
 	mlx_hook(ray->win, 17, (1L << 17), ft_cross, ray);
 	mlx_hook(ray->win, 3, 0, ft_release, ray);
 	mlx_hook(ray->win, 2, 0, ft_event, ray);
+	mlx_hook(ray->win, 6, 0, ft_mouse, ray);
 	mlx_loop_hook(ray->mlx, ft_frame, ray);
 }

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/20 09:34:00 by iqessam           #+#    #+#             */
-/*   Updated: 2022/10/05 20:24:08 by msaouab          ###   ########.fr       */
+/*   Created: 2022/10/05 20:02:42 by msaouab           #+#    #+#             */
+/*   Updated: 2022/10/05 20:02:57 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -206,7 +206,7 @@ void	cam_right(t_ray *ray);
 void	xpmfile(t_ray *ray);
 void	my_mlx_pixel_put(t_ray *ray, int x, int y, unsigned int color);
 void	init_ray(t_ray *ray);
-// void	put_minimap(t_ray *ray);
+void	put_minimap(t_ray *ray);
 void	draw_line(t_ray *ray, int color, double x1, double y1);
 void	field_vue(t_ray *ray, unsigned int color);
 void	put_rays(t_ray *ray);
@@ -215,6 +215,7 @@ void	projection_walls3d(t_ray *ray);
 void	put_celling(t_ray *ray);
 void	put_floor(t_ray *ray);
 void	init_texture(t_ray *ray);
+int		ft_mouse(int x, int y, t_ray *ray);
 void	sfx_sound(t_ray *ray);
 double	normalize(t_ray *ray);
 void	facing_ray(t_ray *ray);

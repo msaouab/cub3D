@@ -6,11 +6,11 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 19:28:31 by msaouab           #+#    #+#             */
-/*   Updated: 2022/10/05 20:25:13 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/10/05 20:07:05 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 void	draw_line(t_ray *ray, int color, double x1, double y1)
 {
@@ -109,6 +109,7 @@ void	put_rays(t_ray *ray)
 		projection_walls3d(ray);
 		ray->ra_angle += ray->fov_angle / ray->num_rays;
 		normalize(ray);
+		draw_line(ray, 0x0fff000, ray->wallhitx, ray->wallhity);
 		i++;
 	}
 }

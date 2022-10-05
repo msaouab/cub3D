@@ -6,31 +6,11 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 15:24:28 by msaouab           #+#    #+#             */
-/*   Updated: 2022/10/05 20:23:05 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/10/05 20:22:54 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
-
-void	my_mlx_pixel_put(t_ray *ray, int x, int y, unsigned int color)
-{
-	char	*dst;
-
-	dst = ray->addr + (y * ray->line_length + x * (ray->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
-}
-
-void	xpmfile(t_ray *ray)
-{
-	ray->img = mlx_new_image(ray->mlx, R_WIDTH, R_HEIGHT);
-	if (!ray->img)
-		ft_error("mlx_xpm_file_to_image problem", 1);
-	ray->addr = mlx_get_data_addr(ray->img, &ray->bits_per_pixel, \
-	&ray->line_length, &ray->endian);
-	if (!ray->addr)
-		ft_error("mlx_get_data_addr problem", 1);
-	init_texture(ray);
-}
+#include "../../includes/cub3d_bonus.h"
 
 void	get_first_angle(t_ray *ray)
 {

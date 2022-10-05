@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   mini_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
+/*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 13:26:36 by msaouab           #+#    #+#             */
-/*   Updated: 2022/10/04 14:07:18 by iqessam          ###   ########.fr       */
+/*   Updated: 2022/10/05 20:19:09 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 void	xpmfile(t_ray *ray)
 {
