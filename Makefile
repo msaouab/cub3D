@@ -6,7 +6,7 @@
 #    By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/18 09:45:39 by iqessam           #+#    #+#              #
-#    Updated: 2022/10/05 20:28:28 by msaouab          ###   ########.fr        #
+#    Updated: 2022/10/05 20:33:52 by msaouab          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,8 @@ green = `tput setaf 2`
 red = `tput setaf 3`
 
 clr = `tput setaf 8`
+
+clr_b = `tput setaf 6`
 
 bold = $(shell tput bold)
 
@@ -109,17 +111,15 @@ $(NAME): $(OBJ) $(HEADER)
 	@$(CC) $(CFLAGS) $(OBJ) $(MLX) -o $(NAME)
 	@echo "${bold}${green}.:|$(green)	CREATION LIBRARY	|:. ==> [OK]${ED}"
 	@echo "${bold}${green}.:|$(green)		DONE		|:. ==> [OK]${ED}"
-	@rm -f */*.o
-	@rm -f */*/*.o
 	@echo "${bold}$(green).:|${red}	   REMOVE OBJ_FILE	$(green)|:. ==> [OK]${ED}"
 
 $(NAME_B): $(OBJ_B) $(HEADER_B)
 	@$(CC) $(CFLAGS) $(OBJ_B) $(MLX) -o $(NAME_B)
-	@echo "${bold}${green}.:|$(green)	CREATION LIBRARY	|:. ==> [OK]${ED}"
-	@echo "${bold}${green}.:|$(green)		DONE		|:. ==> [OK]${ED}"
+	@echo "${bold}${clr_b}.:|$(clr_b)	CREATION LIBRARY	|:. ==> [OK]${ED}"
+	@echo "${bold}${clr_b}.:|$(clr_b)		DONE		|:. ==> [OK]${ED}"
 	@rm -f */*.o
 	@rm -f */*/*.o
-	@echo "${bold}$(green).:|${red}	   REMOVE OBJ_FILE	$(green)|:. ==> [OK]${ED}"
+	@echo "${bold}$(clr_b).:|${red}	   REMOVE OBJ_FILE	$(clr_b)|:. ==> [OK]${ED}"
 
 clean :
 	@rm -f $(OBJ) $(OBJ_B)
