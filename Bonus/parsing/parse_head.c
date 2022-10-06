@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_head.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: iqessam <iqessam@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 15:24:57 by msaouab           #+#    #+#             */
-/*   Updated: 2022/10/05 20:06:33 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/10/06 16:23:37 by iqessam          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	rgb_to_deci(t_cub *cub, char *tmp, char c)
 			color += ft_atoi(decimal[i]) * 256;
 		if (i == 2)
 			color += ft_atoi(decimal[i]);
+		if (ft_atoi(decimal[i]) > 255 || ft_atoi(decimal[i]) < 0)
+			ft_error("RGB Colors Not valid\n", 0);
 	}
 	assignement_color(cub, c, color);
 	ft_free(decimal);
