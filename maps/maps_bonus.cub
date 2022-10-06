@@ -1,10 +1,10 @@
 C 0,19,255
 F 0,128,0
 
-NO ./texture/North.xpm
-SO ./texture/south.xpm
-EA ./texture/east.xpm
-WE ./texture/west.xpm
+NO ./texture/1c61b0435af5cc9d01a1a3364ae31abc.xpm
+SO ./texture/east.xpm
+EA ./texture/ross-elder-uXQVNkam3hE-unsplash.xpm
+WE ./texture/sprite.xpm
 
 111111111111111
 100000100000001

@@ -6,11 +6,11 @@
 #    By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/18 09:45:39 by iqessam           #+#    #+#              #
-#    Updated: 2022/10/05 20:33:52 by msaouab          ###   ########.fr        #
+#    Updated: 2022/10/06 12:57:42 by msaouab          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Cub3D
+NAME = cub3D
 
 NAME_B = Cub3D_Bonus
 
